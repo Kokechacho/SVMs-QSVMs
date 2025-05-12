@@ -44,12 +44,6 @@ def main(config_path: str = "config.json"):
     records = []
     for ds_name, X, y in datasets:
         log.info(f"=== Dataset: {ds_name} ===")
-        # train/test split
-        X_train, X_test, y_train, y_test = train_test_split(
-            X, y,
-            test_size=cfg['data'].get('test_size', 0.3),
-            random_state=cfg['cross_validation']['random_state']
-        )
 
         # Para cada kernel
         for kern in kernels:
@@ -59,17 +53,16 @@ def main(config_path: str = "config.json"):
 
             # Entrenar
             start = time.perf_counter()
-            model = train_svm(
-                X_train, y_train,
+            metrics = train_svm(
+                X, y,
                 kernel_func=func,
                 C=svm_cfg['C'][0],
                 cv=cfg['cross_validation']['n_splits'],
                 n_jobs=cfg['cross_validation']['n_jobs']
             )
             elapsed = time.perf_counter() - start
+            metrics['train_time'] = elapsed
 
-            # Evaluar
-            metrics = evaluate_model(model, X_test, y_test)
             log.info(f"-> {name}: {metrics}")
 
             # Registrar
@@ -78,7 +71,6 @@ def main(config_path: str = "config.json"):
                 'kernel': name,
                 **metrics
             }
-            rec['train_time'] = elapsed * 1000  # en milisegundos
             records.append(rec)
 
         # --- 5. Plot métricas y tabla de diferencias ---
@@ -103,42 +95,14 @@ def main(config_path: str = "config.json"):
         # Llamada a la tabla
         plot_accuracy_diff_table(df_merge[['dataset', 'kernel', 'acc_diff']])
 
-        # --- 6. Plot decision boundary del primer kernel (2 features) ---
-        df_ds = pd.DataFrame([r for r in records if r['dataset'] == ds_name])
-        first_kernel = df_ds.iloc[0]['kernel']
-        first_func   = next(k['func'] for k in kernels if k['name'] == first_kernel)
-
-        # Entrenar de nuevo solo para las 2 primeras features
-        model = train_svm(
-            X_train[:, :2], y_train,
-            kernel_func=first_func,
-            C=svm_cfg['C'][0],              # un float, no la lista
-            cv=cfg['cross_validation']['n_splits'],
-            n_jobs=cfg['cross_validation']['n_jobs']
-        )
-
-        import matplotlib.pyplot as plt
-        fig, ax = plt.subplots(figsize=(6, 5))
-        svc = model.named_steps['svc']
-        plot_decision_boundary(
-            svc,                     # paso svc, no el pipeline
-            X_train[:, :2], y_train, 
-            ax,
-            title=f"{ds_name} - {first_kernel}"
-        )
-        fig.savefig(
-            os.path.join(cfg['output']['plots_dir'], f"{ds_name}_{first_kernel}_boundary.png")
-        )
-        plt.close(fig)
-
         plot_path = os.path.join(cfg['output']['plots_dir'], f"{ds_name}_metrics.png")
         plot_metrics_comparison(
             df_ds.to_dict(orient='records'),
-            metrics=['accuracy', 'f1_score', 'n_support_vectors', 'train_time'],
+            metrics=['accuracy', 'f1_score', 'support_vector_acc', 'train_time'],
             save_path=plot_path
         )
 
-    # --- 7. Guardar resultados globales ---
+    # --- 6. Guardar resultados globales ---
     df_results = pd.DataFrame(records)
     out_csv = os.path.join(cfg['output']['results_dir'], "svm_results.csv")
     df_results.to_csv(out_csv, index=False)
