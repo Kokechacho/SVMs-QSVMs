@@ -1,9 +1,10 @@
-# experiments.py
+
 import logging
 import os
 import json
 import pandas as pd
 import time
+from pathlib import Path
 
 from Data.loader import load_all_datasets, load_expected_results
 from Kernels.all_kernels import build_kernels
@@ -29,13 +30,18 @@ def main(config_path: str = "config.json"):
     log = logging.getLogger(__name__)
 
     # --- 2. Cargar datos ---
-    datasets = load_all_datasets()
+    data_cfg = cfg['data']
+    datasets = load_all_datasets(
+        uci_list      = data_cfg['uci'],
+        libsvm_dir    = Path(data_cfg['libsvm_dir']),
+        libsvm_files  = data_cfg['libsvm']
+    )
     df_expected = load_expected_results()
 
     # --- 3. Construir lista de kernels ---
     svm_cfg = cfg['svm']
     kernels = build_kernels(
-        hermite_degree=max(cfg['svm']['custom_hermite']['max_degree']),
+        hermite_degree=max(cfg['svm']['custom_hermite']['degree']),
         gegen_degree=max(cfg['svm']['custom_gegen']['degree']),
         gegen_alpha=cfg['svm']['custom_gegen']['alpha'][0]  # usa el primero como valor por defecto
     )
