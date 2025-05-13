@@ -35,7 +35,7 @@ def main(config_path: str = "config.json"):
     # --- 3. Construir lista de kernels ---
     svm_cfg = cfg['svm']
     kernels = build_kernels(
-        hermite_degree=max(cfg['svm']['custom_hermite']['max_degree']),
+        hermite_degree=max(cfg['svm']['custom_hermite']['degree']),
         gegen_degree=max(cfg['svm']['custom_gegen']['degree']),
         gegen_alpha=cfg['svm']['custom_gegen']['alpha'][0]  # usa el primero como valor por defecto
     )

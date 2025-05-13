@@ -23,7 +23,7 @@
       "gamma": ["scale", "auto"]
     },
     "custom_hermite": {
-      "max_degree": [3]
+      "degree": [3]
     },
     "custom_gegen": {
       "degree": [3],
