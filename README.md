@@ -18,7 +18,7 @@ SVMS_EXP/
 │   ├── plots/
 │   └── ...
 ├── Data/              # Carga de datasets y preprocesamiento
-│   └── load_data.py
+│   └── loader.py
 │   └── libsvm/
 ├── Model/              # Ejecución y entreno de las SVMs
 │   └── train.py
@@ -86,18 +86,19 @@ También se visualizan:
 
 ---
 
-## 🧪 Añadir un nuevo kernel
+## 🧪 Añadir un nuevo kernel customizado
 
-1. Abre `Kernels/classical_kernels.py` o `Kernels/quantum_kernels.py`.
+1. Abre `Kernels/custom.py`.
 2. Define tu función de kernel personalizada.
 3. Añádela al diccionario de kernels en `config.py`.
+(En caso de hacer las comparativas y que no exista dato esperado (por ejemplo en los q-Hermite) en la tabla se pondrá nan)
 
 ---
 
 ## 📁 Añadir un nuevo dataset
 
-1. Coloca el archivo en `Datasets/` o modifícalo en `load_data.py`.
-2. Añade el nombre del dataset a la lista `DATASETS` en `config.py`.
+1. Coloca el archivo en `Data/libsvm/`.
+2. Añade el nombre del dataset a la lista `Data` en `config.json`.
 
 ---
 
