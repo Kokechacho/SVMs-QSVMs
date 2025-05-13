@@ -41,9 +41,9 @@ def main(config_path: str = "config.json"):
     # --- 3. Construir lista de kernels ---
     svm_cfg = cfg['svm']
     kernels = build_kernels(
-        hermite_degree=max(cfg['svm']['custom_hermite']['degree']),
-        gegen_degree=max(cfg['svm']['custom_gegen']['degree']),
-        gegen_alpha=cfg['svm']['custom_gegen']['alpha'][0]  # usa el primero como valor por defecto
+        hermite_degree=cfg['svm']['custom_hermite']['degree'],
+        gegen_degree=cfg['svm']['custom_gegen']['degree'],
+        gegen_alpha=cfg['svm']['custom_gegen']['alpha']  # usa el primero como valor por defecto
     )
 
     # --- 4. Iterar datasets × kernels ---
@@ -62,7 +62,7 @@ def main(config_path: str = "config.json"):
             metrics = train_svm(
                 X, y,
                 kernel_func=func,
-                C=svm_cfg['C'][0],
+                C=svm_cfg['C'],
                 cv=cfg['cross_validation']['n_splits'],
                 n_jobs=cfg['cross_validation']['n_jobs']
             )

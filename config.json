@@ -14,22 +14,22 @@
     "expected_results_file": "data/expected_results.csv"
   },
   "svm": {
-    "C": [13],
+    "C": 13,
     "kernel_types": ["linear", "poly", "rbf", "custom_hermite", "custom_gegen"],
     "poly": {
-      "degree": [3],
+      "degree": 3,
       "gamma": ["scale", "auto"],
-      "coef0": [1.0]
+      "coef0": 1.0
     },
     "rbf": {
       "gamma": ["scale", "auto"]
     },
     "custom_hermite": {
-      "degree": [3]
+      "degree": 3
     },
     "custom_gegen": {
-      "degree": [3],
-      "alpha": [0.1]
+      "degree": 3,
+      "alpha": 0.1
     }
   },
   "cross_validation": {
