@@ -51,47 +51,33 @@ def load_expected_results() -> pd.DataFrame:
     log.info(f"Cargados resultados esperados para {len(df_long)} combinaciones")
     return df_long
 
-def load_ucirepo_dataset(dataset_id: int, name: str) -> Tuple[np.ndarray, np.ndarray]:
+def load_all_datasets(
+    uci_list: List[Tuple[int,str]],
+    libsvm_dir: Path,
+    libsvm_files: List[Tuple[str,str]]
+) -> List[Tuple[str, np.ndarray, np.ndarray]]:
     """
-    Descarga un dataset de UCI ML Repo, filtra filas con NaNs,
-    y devuelve (X, y)."""
-    df = fetch_ucirepo(id=dataset_id).data
-    X = df.features.values
-    y = df.targets.values.ravel()
-    mask = ~np.isnan(X).any(axis=1)
-    X_clean, y_clean = X[mask], y[mask]
-    log.info(f"UCI '{name}': X={X_clean.shape}, y={y_clean.shape}")
-    return X_clean, y_clean
-
-def load_libsvm_dataset(filename: str, name: str) -> Tuple[np.ndarray, np.ndarray]:
+    Carga datasets según la configuración recibida:
+      - uci_list: lista de (dataset_id, nombre)
+      - libsvm_dir: carpeta donde están los .txt
+      - libsvm_files: lista de (filename, nombre)
     """
-    Carga un fichero LIBSVM desde data/libsvm y devuelve (X, y)."""
-    file_path = LIBSVM_DIR / filename
-    X_sparse, y = load_svmlight_file(str(file_path), zero_based=True)
-    X = X_sparse.toarray()
-    log.info(f"LIBSVM '{name}': X={X.shape}, y={y.shape}")
-    return X, y
-
-def load_all_datasets() -> List[Tuple[str, np.ndarray, np.ndarray]]:
-    """
-    Devuelve lista de tuplas (nombre, X, y) para todos los datasets.
-    """
-    datasets: List[Tuple[str, np.ndarray, np.ndarray]] = []
-    # UCI datasets
-    for did, name in [(43, 'haberman'), (52, 'ionosphere'), (15, 'breast')]:
-        X, y = load_ucirepo_dataset(did, name)
+    datasets = []
+    # UCI
+    for ds_id, name in uci_list:
+        df = fetch_ucirepo(id=ds_id).data
+        X = df.features.values; y = df.targets.values.ravel()
+        mask = ~np.isnan(X).any(axis=1)
+        X, y = X[mask], y[mask]
+        log.info(f"UCI '{name}': {X.shape}")
         datasets.append((name, X, y))
 
-    # LIBSVM datasets
-    files_and_names = [
-        ('australian_scale.txt', 'australian'),
-        ('heart.txt', 'heart'),
-        ('sonar.txt', 'sonar'),
-        ('german.txt', 'german'),
-        ('splice.txt', 'splice'),
-    ]
-    for fname, name in files_and_names:
-        X, y = load_libsvm_dataset(fname, name)
+    # LIBSVM
+    for filename, name in libsvm_files:
+        path = libsvm_dir / filename
+        Xs, y = load_svmlight_file(str(path), zero_based=True)
+        X = Xs.toarray()
+        log.info(f"LIBSVM '{name}': {X.shape}")
         datasets.append((name, X, y))
 
     return datasets

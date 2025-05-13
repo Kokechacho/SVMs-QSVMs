@@ -1,13 +1,15 @@
 {
   "data": {
-    "uci_ids": [43, 52, 15],
-    "libsvm_files": [
-      "australian_scale.txt",
-      "heart.txt",
-      "sonar.txt",
-      "german.txt",
-      "splice.txt"
-    ],
+    "uci": [[43, "haberman"],
+    [52, "ionosphere"],
+    [15, "breast"]],
+    "libsvm": [
+    ["australian_scale.txt", "australian"],
+    ["heart.txt", "heart"],
+    ["sonar.txt", "sonar"],
+    ["german.txt", "german"],
+    ["splice.txt", "splice"]
+  ],
     "libsvm_dir": "data/libsvm",
     "expected_results_file": "data/expected_results.csv"
   },
