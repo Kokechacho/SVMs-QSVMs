@@ -5,11 +5,11 @@ import json
 import pandas as pd
 import time
 from pathlib import Path
+import argparse
 
 from Data.loader import load_all_datasets, load_expected_results
 from Kernels.all_kernels import build_kernels
-from Model.train import train_svm, tune_svm
-from Model.evaluate import evaluate_model
+from Model.train import train_svm
 from Analysis.plots import (
     plot_metrics_comparison,
     plot_accuracy_diff_table,
@@ -18,7 +18,7 @@ from Analysis.plots import (
 
 from sklearn.model_selection import train_test_split
 
-def main(config_path: str = "config.json"):
+def main(config_path: str):
     # --- 1. Leer configuración ---
     with open(config_path, 'r') as f:
         cfg = json.load(f)
@@ -75,6 +75,11 @@ def main(config_path: str = "config.json"):
             rec = {
                 'dataset': ds_name,
                 'kernel': name,
+                'svm.C': svm_cfg['C'],  
+                'svm.poly.degree': svm_cfg['poly']['degree'] if name == "POLY" else None,
+                'svm.poly.gamma': svm_cfg['poly']['gamma'] if name == "POLY" else None,
+                'svm.custom_hermite.degree': svm_cfg['custom_hermite']['degree'] if name == "HERMITE" else None,
+                'svm.custom_gegen.alpha': svm_cfg['custom_gegen']['alpha'] if name == "GEGEN" else None,
                 **metrics
             }
             records.append(rec)
@@ -99,14 +104,14 @@ def main(config_path: str = "config.json"):
         )
 
         # Llamada a la tabla
-        plot_accuracy_diff_table(df_merge[['dataset', 'kernel', 'acc_diff']])
+        # plot_accuracy_diff_table(df_merge[['dataset', 'kernel', 'acc_diff']])
 
         plot_path = os.path.join(cfg['output']['plots_dir'], f"{ds_name}_metrics.png")
-        plot_metrics_comparison(
+        """plot_metrics_comparison(
             df_ds.to_dict(orient='records'),
             metrics=['accuracy', 'f1_score', 'support_vector_acc', 'train_time'],
             save_path=plot_path
-        )
+        )"""
 
     # --- 6. Guardar resultados globales ---
     df_results = pd.DataFrame(records)
@@ -115,4 +120,7 @@ def main(config_path: str = "config.json"):
     log.info(f"Resultados guardados en {out_csv}")
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("config_path", help="Ruta al config JSON")
+    args = parser.parse_args()
+    main(args.config_path)

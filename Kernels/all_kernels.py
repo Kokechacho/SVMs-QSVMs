@@ -17,7 +17,7 @@ def build_kernels(
     ]
     # Hermite variantes
     kernels.append({
-        'name': f'HERMITE',
+        'name': 'HERMITE',
         'func': lambda X, Y, n=hermite_degree: c.hermite_kernel_matrix(X, Y, n)
     })
     # Gegenbauer
