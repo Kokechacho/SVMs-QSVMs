@@ -40,7 +40,7 @@
         "expected_results_file": "data/expected_results.csv"
     },
     "svm": {
-        "C": 1,
+        "C": 10,
         "kernel_types": [
             "linear",
             "poly",

@@ -1,0 +1,215 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="esp" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kernels package &mdash; SVMs and QSVM - documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=59f85bfe"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SVMs and QSVM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="experiments.html">experiments module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hyper_opt.html">hyper_opt module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="experiments.html">experiments module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SVMs and QSVM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kernels package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Kernels.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="kernels-package">
+<h1>Kernels package<a class="headerlink" href="#kernels-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-Kernels.all_kernels">
+<span id="kernels-all-kernels-module"></span><h2>Kernels.all_kernels module<a class="headerlink" href="#module-Kernels.all_kernels" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="Kernels.all_kernels.build_kernels">
+<span class="sig-prename descclassname"><span class="pre">Kernels.all_kernels.</span></span><span class="sig-name descname"><span class="pre">build_kernels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hermite_degree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gegen_degree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gegen_alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Kernels.all_kernels.build_kernels" title="Link to this definition"></a></dt>
+<dd><p>Construye lista de kernels con nombre y función.</p>
+</dd></dl>
+
+</section>
+<section id="module-Kernels.base">
+<span id="kernels-base-module"></span><h2>Kernels.base module<a class="headerlink" href="#module-Kernels.base" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="Kernels.base.linear">
+<span class="sig-prename descclassname"><span class="pre">Kernels.base.</span></span><span class="sig-name descname"><span class="pre">linear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Kernels.base.linear" title="Link to this definition"></a></dt>
+<dd><p>Kernel lineal: k(x, y) = x · y
+:return: función que computa la matriz de Gram</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Kernels.base.polynomial">
+<span class="sig-prename descclassname"><span class="pre">Kernels.base.</span></span><span class="sig-name descname"><span class="pre">polynomial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">degree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coef0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Kernels.base.polynomial" title="Link to this definition"></a></dt>
+<dd><p>Kernel polinómico: (gamma &lt;x, y&gt; + coef0)^degree
+:param degree: grado del polinomio
+:param gamma: escala de la inner product (si None usa 1/n_features)
+:param coef0: término independiente
+:return: función de kernel polinómico</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Kernels.base.rbf">
+<span class="sig-prename descclassname"><span class="pre">Kernels.base.</span></span><span class="sig-name descname"><span class="pre">rbf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#Kernels.base.rbf" title="Link to this definition"></a></dt>
+<dd><p>Kernel RBF (Gaussiano): exp(-gamma ||x-y||^2)
+:param gamma: coeficiente (si None usa 1/n_features)
+:return: función de kernel RBF</p>
+</dd></dl>
+
+</section>
+<section id="module-Kernels.custom">
+<span id="kernels-custom-module"></span><h2>Kernels.custom module<a class="headerlink" href="#module-Kernels.custom" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="Kernels.custom.compute_gegenbauer">
+<span class="sig-prename descclassname"><span class="pre">Kernels.custom.</span></span><span class="sig-name descname"><span class="pre">compute_gegenbauer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#Kernels.custom.compute_gegenbauer" title="Link to this definition"></a></dt>
+<dd><p>Genera polinomios de Gegenbauer C_0..C_n_max(M) en cada x
+:param x: vector (n_samples,)
+:param n_max: grado máximo
+:param alpha: parámetro
+:return: matriz (n_samples, n_max+1)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Kernels.custom.compute_he">
+<span class="sig-prename descclassname"><span class="pre">Kernels.custom.</span></span><span class="sig-name descname"><span class="pre">compute_he</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#Kernels.custom.compute_he" title="Link to this definition"></a></dt>
+<dd><p>Computa polinomios de Hermite probabilistas He_0 .. He_max_order
+:param x: vector (n_samples,)
+:param max_order: grado máximo
+:return: matriz (n_samples, max_order+1)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Kernels.custom.compute_u">
+<span class="sig-prename descclassname"><span class="pre">Kernels.custom.</span></span><span class="sig-name descname"><span class="pre">compute_u</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#Kernels.custom.compute_u" title="Link to this definition"></a></dt>
+<dd><p>Factor u(C_i) = 1 / [sqrt(i+1) * <a href="#id1"><span class="problematic" id="id2">|C_i^α(1)|</span></a>]</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Kernels.custom.gegenbauer_kernel">
+<span class="sig-prename descclassname"><span class="pre">Kernels.custom.</span></span><span class="sig-name descname"><span class="pre">gegenbauer_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#Kernels.custom.gegenbauer_kernel" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Kernel de Gegenbauer:</dt><dd><p>K(x,z) = ∏_{j=1..d} [ ∑_{i=0..n} C_i^α(x_j)C_i^α(z_j) * u_i^2 * w_α(x_j,z_j) ]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Kernels.custom.gegenbauer_weight">
+<span class="sig-prename descclassname"><span class="pre">Kernels.custom.</span></span><span class="sig-name descname"><span class="pre">gegenbauer_weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#Kernels.custom.gegenbauer_weight" title="Link to this definition"></a></dt>
+<dd><p>Peso w_α(x,z) = [(1-x^2)(1-z^2)]^(α-1/2) + ε</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Kernels.custom.hermite_kernel_matrix">
+<span class="sig-prename descclassname"><span class="pre">Kernels.custom.</span></span><span class="sig-name descname"><span class="pre">hermite_kernel_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#Kernels.custom.hermite_kernel_matrix" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Kernel de Hermite probabilista vectorizado:</dt><dd><p>K(x,z) = ∏_{j=0..d-1} [ ∑_{i=0}^n 2^{-2i} He_i(x_j) He_i(z_j) * exp(-(x_j^2+z_j^2)/2) ]</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> -- array (m, d)</p></li>
+<li><p><strong>Y</strong> -- array (p, d)</p></li>
+<li><p><strong>n</strong> -- grado máximo de Hermite</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>matriz (m, p)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-Kernels">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-Kernels" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Álvaro Sánchez-Paniagua.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

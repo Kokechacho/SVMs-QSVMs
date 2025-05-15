@@ -74,7 +74,7 @@ def plot_decision_boundary(
     ax.set_title(title)
     ax.legend()
 
-def plot_metrics_comparison(results, metrics=['accuracy', 'f1_score', 'n_support_vectors'], save_path=None):
+def plot_metrics_comparison(results, metrics=['accuracy', 'f1_score', 'n_support_vectors'], save_path=None, show: bool = True):
     """
     Plot bar charts comparing metrics per kernel.
     :param results: List of dicts per kernel for a given dataset
@@ -108,10 +108,14 @@ def plot_metrics_comparison(results, metrics=['accuracy', 'f1_score', 'n_support
         plt.savefig(save_path)
         print(f"[Plot] Guardado en {save_path}")
 
-    plt.show()
+    if show:
+        plt.show()
+    else:
+        plt.close()
 
 def plot_accuracy_diff_table(
-    df_comp: pd.DataFrame
+    df_comp: pd.DataFrame,
+    show: bool = True
 ) -> None:
     """
     Muestra una tabla con la diferencia de accuracy entre observado y esperado.
@@ -151,4 +155,7 @@ def plot_accuracy_diff_table(
     tbl.scale(1, 1.5)
     plt.title('Diferencia Accuracy Observado vs Esperado')
     plt.tight_layout()
-    plt.show()
+    if show:
+        plt.show()
+    else:
+        plt.close()

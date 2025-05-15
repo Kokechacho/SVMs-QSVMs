@@ -1,0 +1,48 @@
+\indexentry{module@\spxentry{module}!Analysis.plots@\spxentry{Analysis.plots}|hyperpage}{3}
+\indexentry{Analysis.plots@\spxentry{Analysis.plots}!module@\spxentry{module}|hyperpage}{3}
+\indexentry{plot\_accuracy\_diff\_table() (in module Analysis.plots)@\spxentry{plot\_accuracy\_diff\_table()}\spxextra{in module Analysis.plots}|hyperpage}{3}
+\indexentry{plot\_decision\_boundary() (in module Analysis.plots)@\spxentry{plot\_decision\_boundary()}\spxextra{in module Analysis.plots}|hyperpage}{3}
+\indexentry{plot\_metrics\_comparison() (in module Analysis.plots)@\spxentry{plot\_metrics\_comparison()}\spxextra{in module Analysis.plots}|hyperpage}{3}
+\indexentry{module@\spxentry{module}!Analysis@\spxentry{Analysis}|hyperpage}{4}
+\indexentry{Analysis@\spxentry{Analysis}!module@\spxentry{module}|hyperpage}{4}
+\indexentry{module@\spxentry{module}!Data.loader@\spxentry{Data.loader}|hyperpage}{5}
+\indexentry{Data.loader@\spxentry{Data.loader}!module@\spxentry{module}|hyperpage}{5}
+\indexentry{load\_all\_datasets() (in module Data.loader)@\spxentry{load\_all\_datasets()}\spxextra{in module Data.loader}|hyperpage}{5}
+\indexentry{load\_expected\_results() (in module Data.loader)@\spxentry{load\_expected\_results()}\spxextra{in module Data.loader}|hyperpage}{5}
+\indexentry{module@\spxentry{module}!Data@\spxentry{Data}|hyperpage}{5}
+\indexentry{Data@\spxentry{Data}!module@\spxentry{module}|hyperpage}{5}
+\indexentry{module@\spxentry{module}!Kernels.all\_kernels@\spxentry{Kernels.all\_kernels}|hyperpage}{7}
+\indexentry{Kernels.all\_kernels@\spxentry{Kernels.all\_kernels}!module@\spxentry{module}|hyperpage}{7}
+\indexentry{build\_kernels() (in module Kernels.all\_kernels)@\spxentry{build\_kernels()}\spxextra{in module Kernels.all\_kernels}|hyperpage}{7}
+\indexentry{module@\spxentry{module}!Kernels.base@\spxentry{Kernels.base}|hyperpage}{7}
+\indexentry{Kernels.base@\spxentry{Kernels.base}!module@\spxentry{module}|hyperpage}{7}
+\indexentry{linear() (in module Kernels.base)@\spxentry{linear()}\spxextra{in module Kernels.base}|hyperpage}{7}
+\indexentry{polynomial() (in module Kernels.base)@\spxentry{polynomial()}\spxextra{in module Kernels.base}|hyperpage}{7}
+\indexentry{rbf() (in module Kernels.base)@\spxentry{rbf()}\spxextra{in module Kernels.base}|hyperpage}{7}
+\indexentry{module@\spxentry{module}!Kernels.custom@\spxentry{Kernels.custom}|hyperpage}{7}
+\indexentry{Kernels.custom@\spxentry{Kernels.custom}!module@\spxentry{module}|hyperpage}{7}
+\indexentry{compute\_gegenbauer() (in module Kernels.custom)@\spxentry{compute\_gegenbauer()}\spxextra{in module Kernels.custom}|hyperpage}{7}
+\indexentry{compute\_he() (in module Kernels.custom)@\spxentry{compute\_he()}\spxextra{in module Kernels.custom}|hyperpage}{7}
+\indexentry{compute\_u() (in module Kernels.custom)@\spxentry{compute\_u()}\spxextra{in module Kernels.custom}|hyperpage}{8}
+\indexentry{gegenbauer\_kernel() (in module Kernels.custom)@\spxentry{gegenbauer\_kernel()}\spxextra{in module Kernels.custom}|hyperpage}{8}
+\indexentry{gegenbauer\_weight() (in module Kernels.custom)@\spxentry{gegenbauer\_weight()}\spxextra{in module Kernels.custom}|hyperpage}{8}
+\indexentry{hermite\_kernel\_matrix() (in module Kernels.custom)@\spxentry{hermite\_kernel\_matrix()}\spxextra{in module Kernels.custom}|hyperpage}{8}
+\indexentry{module@\spxentry{module}!Kernels@\spxentry{Kernels}|hyperpage}{8}
+\indexentry{Kernels@\spxentry{Kernels}!module@\spxentry{module}|hyperpage}{8}
+\indexentry{module@\spxentry{module}!Model.evaluate@\spxentry{Model.evaluate}|hyperpage}{9}
+\indexentry{Model.evaluate@\spxentry{Model.evaluate}!module@\spxentry{module}|hyperpage}{9}
+\indexentry{evaluate\_model() (in module Model.evaluate)@\spxentry{evaluate\_model()}\spxextra{in module Model.evaluate}|hyperpage}{9}
+\indexentry{module@\spxentry{module}!Model.train@\spxentry{Model.train}|hyperpage}{9}
+\indexentry{Model.train@\spxentry{Model.train}!module@\spxentry{module}|hyperpage}{9}
+\indexentry{train\_svm() (in module Model.train)@\spxentry{train\_svm()}\spxextra{in module Model.train}|hyperpage}{9}
+\indexentry{tune\_svm() (in module Model.train)@\spxentry{tune\_svm()}\spxextra{in module Model.train}|hyperpage}{9}
+\indexentry{module@\spxentry{module}!Model@\spxentry{Model}|hyperpage}{10}
+\indexentry{Model@\spxentry{Model}!module@\spxentry{module}|hyperpage}{10}
+\indexentry{module@\spxentry{module}!experiments@\spxentry{experiments}|hyperpage}{11}
+\indexentry{experiments@\spxentry{experiments}!module@\spxentry{module}|hyperpage}{11}
+\indexentry{main() (in module experiments)@\spxentry{main()}\spxextra{in module experiments}|hyperpage}{11}
+\indexentry{module@\spxentry{module}!hyper\_opt@\spxentry{hyper\_opt}|hyperpage}{13}
+\indexentry{hyper\_opt@\spxentry{hyper\_opt}!module@\spxentry{module}|hyperpage}{13}
+\indexentry{generate\_combinations() (in module hyper\_opt)@\spxentry{generate\_combinations()}\spxextra{in module hyper\_opt}|hyperpage}{13}
+\indexentry{main() (in module hyper\_opt)@\spxentry{main()}\spxextra{in module hyper\_opt}|hyperpage}{13}
+\indexentry{update\_config() (in module hyper\_opt)@\spxentry{update\_config()}\spxextra{in module hyper\_opt}|hyperpage}{13}

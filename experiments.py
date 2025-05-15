@@ -1,4 +1,3 @@
-
 import logging
 import os
 import json
@@ -18,7 +17,7 @@ from Analysis.plots import (
 
 from sklearn.model_selection import train_test_split
 
-def main(config_path: str):
+def main(config_path: str, do_plots: bool = True):
     # --- 1. Leer configuración ---
     with open(config_path, 'r') as f:
         cfg = json.load(f)
@@ -41,9 +40,9 @@ def main(config_path: str):
     # --- 3. Construir lista de kernels ---
     svm_cfg = cfg['svm']
     kernels = build_kernels(
-        hermite_degree=cfg['svm']['custom_hermite']['degree'],
-        gegen_degree=cfg['svm']['custom_gegen']['degree'],
-        gegen_alpha=cfg['svm']['custom_gegen']['alpha']  # usa el primero como valor por defecto
+        hermite_degree=svm_cfg['custom_hermite']['degree'],
+        gegen_degree=svm_cfg['custom_gegen']['degree'],
+        gegen_alpha=svm_cfg['custom_gegen']['alpha']
     )
 
     # --- 4. Iterar datasets × kernels ---
@@ -85,33 +84,36 @@ def main(config_path: str):
             records.append(rec)
 
         # --- 5. Plot métricas y tabla de diferencias ---
-        df_ds = pd.DataFrame([r for r in records if r['dataset']==ds_name])
-        # Normalizar
-        df_ds['dataset']       = df_ds['dataset'].str.strip().str.lower()
+        df_ds = pd.DataFrame([r for r in records if r['dataset'] == ds_name])
+        # Normalizar nombres de datasets
+        df_ds['dataset'] = df_ds['dataset'].str.strip().str.lower()
         df_expected['dataset'] = df_expected['dataset'].str.strip().str.lower()
 
-        # Hacemos el merge con sufijos para distinguir observada y esperada
+        # Merge observado vs esperado
         df_merge = pd.merge(
             df_ds[['dataset', 'kernel', 'accuracy']],
-            df_expected,  # tiene columna 'accuracy'
+            df_expected,
             on=['dataset', 'kernel'],
             suffixes=('_obs', '_exp')
         )
-
-        # Ahora sí hay columnas 'accuracy_obs' y 'accuracy_exp'
         df_merge = df_merge.assign(
             acc_diff=lambda df: df['accuracy_obs'] - df['accuracy_exp']
         )
 
-        # Llamada a la tabla
-        # plot_accuracy_diff_table(df_merge[['dataset', 'kernel', 'acc_diff']])
+        # Ejecutar gráficos solo si do_plots=True
+        plot_accuracy_diff_table(
+            df_merge[['dataset', 'kernel', 'acc_diff']],
+            show=do_plots
+        )
 
+        # Métricas comparativas (siempre guardadas; mostrar según do_plots)
         plot_path = os.path.join(cfg['output']['plots_dir'], f"{ds_name}_metrics.png")
-        """plot_metrics_comparison(
+        plot_metrics_comparison(
             df_ds.to_dict(orient='records'),
             metrics=['accuracy', 'f1_score', 'support_vector_acc', 'train_time'],
-            save_path=plot_path
-        )"""
+            save_path=plot_path,
+            show=do_plots
+        )
 
     # --- 6. Guardar resultados globales ---
     df_results = pd.DataFrame(records)
@@ -120,7 +122,21 @@ def main(config_path: str):
     log.info(f"Resultados guardados en {out_csv}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("config_path", help="Ruta al config JSON")
+    parser = argparse.ArgumentParser(
+        description="Ejecuta experimentos de SVM con configuración JSON y control de plots."
+    )
+    parser.add_argument(
+        "--config", "-c",
+        dest="config_path",
+        default=str(Path(__file__).parent / "config.json"),
+        help="Ruta al archivo de configuración JSON (por defecto: config.json en la raíz del proyecto)."
+    )
+    parser.add_argument(
+        "--no-plots",
+        dest="do_plots",
+        action="store_false",
+        help="Desactiva la ejecución de las secciones de plotting (por defecto activado)."
+    )
+    parser.set_defaults(do_plots=True)
     args = parser.parse_args()
-    main(args.config_path)
+    main(args.config_path, args.do_plots)

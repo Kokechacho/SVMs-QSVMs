@@ -13,10 +13,10 @@ CSV_NAME = "svm_results.csv"
 
 # Espacio de búsqueda de hiperparámetros (personalizable)
 SEARCH_SPACE = {
-    "svm.C": [1, 10],                      # Valores de C
-    "svm.poly.degree": [2, 3],                   # Grados para kernel polinomial
-    "svm.custom_hermite.degree": [3, 4],         # Grado para Hermite
-    "svm.custom_gegen.alpha": [0.1, 0.55],        # Alpha para Gegenbauer
+    "svm.C": [10],                      # Valores de C
+    "svm.poly.degree": [2],                   # Grados para kernel polinomial
+    "svm.custom_hermite.degree": [3],         # Grado para Hermite
+    "svm.custom_gegen.alpha": [0.1]        # Alpha para Gegenbauer
 }
 
 def generate_combinations(search_space):
@@ -81,7 +81,7 @@ def main():
         # Ejecutar experiments.py
         try:
             subprocess.run(
-                ["python", "experiments.py", temp_config_path],
+                ["python", "experiments.py", "--config", temp_config_path, "--no-plots"],
                 check=True,
                 capture_output=True,
                 text=True
