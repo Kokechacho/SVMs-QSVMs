@@ -16,7 +16,6 @@ SVMS_EXP/
 │   └── base.py
 ├── results/               # CSVs y gráficos generados automáticamente
 │   ├── plots/
-│   └── ...
 ├── Data/              # Carga de datasets y preprocesamiento
 │   └── loader.py
 │   └── libsvm/
@@ -24,7 +23,7 @@ SVMS_EXP/
 │   └── train.py
 │   └── evaluate.py
 ├── experiments.py         # Script principal para ejecutar todos los experimentos
-├── config.py              # Configuración general (datasets, kernels, etc.)
+├── config.json              # Configuración general (datasets, kernels, etc.)
 ├── requirements.txt       # Dependencias necesarias (aún por hacer)
 └── README.md              # Este archivo
 ```
