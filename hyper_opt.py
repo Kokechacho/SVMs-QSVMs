@@ -16,6 +16,7 @@ SEARCH_SPACE = {
     "svm.C": [10],                      # Valores de C
     "svm.poly.degree": [2],                   # Grados para kernel polinomial
     "svm.custom_hermite.degree": [3],         # Grado para Hermite
+    "svm.custom_gegen.degree": [2],         # Grado para Gegenbauer
     "svm.custom_gegen.alpha": [0.1]        # Alpha para Gegenbauer
 }
 
@@ -117,19 +118,46 @@ def main():
         print(f"{'Dataset':<15} | {'Kernel':<15} | {'Accuracy':<8} | {'C':<5} | {'Degree':<6} | {'Gamma':<6} | {'Alpha':<6} |")
         print("-"*90)
         
-        for _, row in best_results.iterrows():
-            # Extraer parámetros específicos del kernel
-            kernel = row['kernel']
-            params = {
-                'C': row.get('svm.C', '-'),
-                'degree': row.get('svm.poly.degree', '-'),
-                'gamma': row.get('svm.poly.gamma', row.get('svm.rbf.gamma', '-')),
-                'alpha': row.get('svm.custom_gegen.alpha', '-')
-            }
-            
-            # Imprimir fila formateada
-            print(f"{row['dataset']:<15} | {kernel:<15} | {row['accuracy']:.4f}    | "
-                f"{params['C']:<5} | {params['degree']:<6} | {params['gamma']:<6} | {params['alpha']:<6} |")
+
+        # Extraemos listas ordenadas de datasets y kernels
+        datasets = sorted(best_results['dataset'].unique())
+        kernels  = sorted(best_results['kernel'].unique())
+
+        for ds in datasets:
+            for kern in kernels:
+                # Filtramos la fila que corresponde a (ds, kern)
+                sel = best_results[
+                    (best_results['dataset'] == ds) &
+                    (best_results['kernel']  == kern)
+                ]
+                if sel.empty:
+                    continue  # no hubo esa combinación
+
+                row = sel.iloc[0]  # ya es el best para ese par
+
+                # --- Extraemos parámetros como antes ---
+                C = row.get('svm.C', '-')
+
+                degree = '-'
+                for key in ['svm.poly.degree',
+                            'svm.custom_hermite.degree',
+                            'svm.custom_gegen.degree']:
+                    val = row.get(key)
+                    if pd.notna(val):
+                        degree = int(val) if float(val).is_integer() else val
+                        break
+
+                gamma = row.get('svm.poly.gamma')
+                if not pd.notna(gamma):
+                    gamma = row.get('svm.rbf.gamma')
+                gamma = gamma if pd.notna(gamma) else '-'
+
+                alpha = row.get('svm.custom_gegen.alpha')
+                alpha = alpha if pd.notna(alpha) else '-'
+
+                # Finalmente imprimimos la línea
+                print(f"{ds:<15} | {kern:<15} | {row['accuracy']:.4f}    | "
+                    f"{C:<5} | {degree:<6} | {gamma:<6} | {alpha:<6} |")
         
         print("="*90)
 

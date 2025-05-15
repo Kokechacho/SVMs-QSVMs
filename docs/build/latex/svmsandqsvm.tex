@@ -14,7 +14,7 @@
 \PassOptionsToPackage{colorrows}{sphinx}
 
 \PassOptionsToPackage{warn}{textcomp}
-\usepackage[utf8]{inputenc}
+
 \ifdefined\DeclareUnicodeCharacter
 % support both utf8 and utf8x syntaxes
   \ifdefined\DeclareUnicodeCharacterAsOptional
@@ -30,7 +30,7 @@
   \sphinxDUC{2572}{\textbackslash}
 \fi
 \usepackage{cmap}
-\usepackage[T1]{fontenc}
+
 \usepackage{amsmath,amssymb,amstext}
 \usepackage{babel}
 
@@ -62,6 +62,13 @@
 \usepackage{sphinxmessages}
 \setcounter{tocdepth}{1}
 
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{amsmath,amssymb}
+\usepackage{newunicodechar}
+\newunicodechar{α}{\ensuremath{\alpha}}
 
 
 \title{SVMs and QSVM}
@@ -108,7 +115,7 @@ documentation for details.
 \pysigstartsignatures
 \pysiglinewithargsret
 {\sphinxcode{\sphinxupquote{Analysis.plots.}}\sphinxbfcode{\sphinxupquote{plot\_accuracy\_diff\_table}}}
-{\sphinxparam{\DUrole{n}{df\_comp}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{DataFrame}}}
+{\sphinxparam{\DUrole{n}{df\_comp}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{DataFrame}}\sphinxparamcomma \sphinxparam{\DUrole{n}{show}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{bool}\DUrole{w}{ }\DUrole{o}{=}\DUrole{w}{ }\DUrole{default_value}{True}}}
 {{ $\rightarrow$ None}}
 \pysigstopsignatures
 \sphinxAtStartPar
@@ -169,7 +176,7 @@ Plot decision boundary and support vectors for 2D data.
 \pysigstartsignatures
 \pysiglinewithargsret
 {\sphinxcode{\sphinxupquote{Analysis.plots.}}\sphinxbfcode{\sphinxupquote{plot\_metrics\_comparison}}}
-{\sphinxparam{\DUrole{n}{results}}\sphinxparamcomma \sphinxparam{\DUrole{n}{metrics}\DUrole{o}{=}\DUrole{default_value}{{[}\textquotesingle{}accuracy\textquotesingle{}, \textquotesingle{}f1\_score\textquotesingle{}, \textquotesingle{}n\_support\_vectors\textquotesingle{}{]}}}\sphinxparamcomma \sphinxparam{\DUrole{n}{save\_path}\DUrole{o}{=}\DUrole{default_value}{None}}}
+{\sphinxparam{\DUrole{n}{results}}\sphinxparamcomma \sphinxparam{\DUrole{n}{metrics}\DUrole{o}{=}\DUrole{default_value}{{[}\textquotesingle{}accuracy\textquotesingle{}, \textquotesingle{}f1\_score\textquotesingle{}, \textquotesingle{}n\_support\_vectors\textquotesingle{}{]}}}\sphinxparamcomma \sphinxparam{\DUrole{n}{save\_path}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{show}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{bool}\DUrole{w}{ }\DUrole{o}{=}\DUrole{w}{ }\DUrole{default_value}{True}}}
 {}
 \pysigstopsignatures
 \sphinxAtStartPar
@@ -583,7 +590,7 @@ Mejor estimador
 \pysigstartsignatures
 \pysiglinewithargsret
 {\sphinxcode{\sphinxupquote{experiments.}}\sphinxbfcode{\sphinxupquote{main}}}
-{\sphinxparam{\DUrole{n}{config\_path}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{str}}}
+{\sphinxparam{\DUrole{n}{config\_path}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{str}}\sphinxparamcomma \sphinxparam{\DUrole{n}{do\_plots}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{bool}\DUrole{w}{ }\DUrole{o}{=}\DUrole{w}{ }\DUrole{default_value}{True}}}
 {}
 \pysigstopsignatures
 \end{fulllineitems}

@@ -78,6 +78,7 @@ def main(config_path: str, do_plots: bool = True):
                 'svm.poly.degree': svm_cfg['poly']['degree'] if name == "POLY" else None,
                 'svm.poly.gamma': svm_cfg['poly']['gamma'] if name == "POLY" else None,
                 'svm.custom_hermite.degree': svm_cfg['custom_hermite']['degree'] if name == "HERMITE" else None,
+                'svm.custom_gegen.degree': svm_cfg['custom_gegen']['degree'] if name == "GEGEN" else None,
                 'svm.custom_gegen.alpha': svm_cfg['custom_gegen']['alpha'] if name == "GEGEN" else None,
                 **metrics
             }

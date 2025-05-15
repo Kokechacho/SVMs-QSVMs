@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.26)  15 MAY 2025 15:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.26)  15 MAY 2025 17:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -28,11 +28,6 @@ File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 )
 LaTeX Info: Redefining \and on input line 35.
 )
-(C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
-Package: inputenc 2021/02/14 v1.3d Input encoding file
-\inpenc@prehook=\toks17
-\inpenc@posthook=\toks18
-)
    defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+2500 (decimal 9472)
    defining Unicode char U+2502 (decimal 9474)
@@ -43,9 +38,6 @@ Package: inputenc 2021/02/14 v1.3d Input encoding file
 (C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/cmap\cmap.sty
 Package: cmap 2021/02/06 v1.0j CMap support: searchable PDF
 )
-(C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
-Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
-<<t1.cmap>>)
 (C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
 Package: amsmath 2023/05/13 v2.17o AMS math features
 \@mathmargin=\skip50
@@ -56,7 +48,7 @@ Package: amstext 2021/08/26 v2.01 AMS text
 
 (C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks19
+\@emptytoks=\toks17
 \ex@=\dimen141
 ))
 (C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
@@ -96,21 +88,21 @@ LaTeX Info: Redefining \Relbar on input line 971.
 \dotsspace@=\muskip16
 \c@parentequation=\count269
 \dspbrk@lvl=\count270
-\tag@help=\toks20
+\tag@help=\toks18
 \row@=\count271
 \column@=\count272
 \maxfields@=\count273
-\andhelp@=\toks21
+\andhelp@=\toks19
 \eqnshift@=\dimen144
 \alignsep@=\dimen145
 \tagshift@=\dimen146
 \tagwidth@=\dimen147
 \totwidth@=\dimen148
 \lineht@=\dimen149
-\@envbody=\toks22
+\@envbody=\toks20
 \multlinegap=\skip51
 \multlinetaggap=\skip52
-\mathdisplay@stack=\toks23
+\mathdisplay@stack=\toks21
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 )
@@ -163,7 +155,7 @@ Package: tgtermes 2009/09/27 v1.2 TeX Gyre Termes as default roman family
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 (C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
-\KV@toks@=\toks24
+\KV@toks@=\toks22
 )
 (C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
 Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
@@ -219,9 +211,9 @@ Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 (C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count276
-\float@exts=\toks25
+\float@exts=\toks23
 \float@box=\box53
-\@float@everytoks=\toks26
+\@float@everytoks=\toks24
 \@floatcapt=\box54
 )
 (C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/wrapfig\wrapfig.sty
@@ -229,7 +221,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \WF@size=\dimen152
 \c@WF@wrappedlines=\count277
 \WF@box=\box55
-\WF@everypar=\toks27
+\WF@everypar=\toks25
 Package: wrapfig 2003/01/31  v 3.6
 )
 (C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/capt-of\capt-of.sty
@@ -341,7 +333,7 @@ Package pict2e Info: Driver file for pict2e: p2e-pdftex.def on input line 114.
 (C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/pict2e\p2e-pdftex.def
 File: p2e-pdftex.def 2016/02/05 v0.1u Driver-dependant file (RN,HjG,JT)
 )
-\pIIe@GRAPH=\toks28
+\pIIe@GRAPH=\toks26
 \@arclen=\dimen165
 \@arcrad=\dimen166
 \pIIe@tempdima=\dimen167
@@ -390,7 +382,7 @@ Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 Package: sphinxpackagefootnote 2024/05/17 v7.3.x Sphinx custom footnotehyper pa
 ckage (Sphinx team)
 \FNH@notes=\box105
-\FNH@toks=\toks29
+\FNH@toks=\toks27
 \FNH@width=\dimen196
 \c@sphinxfootnotemark=\count288
 )
@@ -439,7 +431,7 @@ Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
 \col@sep=\dimen198
 \ar@mcellbox=\box111
 \extrarowheight=\dimen199
-\NC@list=\toks30
+\NC@list=\toks28
 \extratabsurround=\skip63
 \backup@length=\skip64
 \ar@cellbox=\box112
@@ -473,7 +465,7 @@ Package: longtable 2023-11-01 v4.19 Multi-page Table package (DPC)
 \LT@rows=\count296
 \c@LT@tables=\count297
 \c@LT@chunks=\count298
-\LT@p@ftn=\toks31
+\LT@p@ftn=\toks29
 )
 (C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/varwidth\varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
@@ -486,7 +478,7 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 
 (C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\colortbl.sty
 Package: colortbl 2024/07/06 v1.0i Color table columns (DPC)
-\everycr=\toks32
+\everycr=\toks30
 \minrowclearance=\skip69
 \rownum=\count300
 )
@@ -513,7 +505,7 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 Package: sphinxlatexnumfig 2024/07/31 v8.1.0 numbering
 ) (sphinxlatexlists.sty
 Package: sphinxlatexlists 2021/12/20 lists
-\spx@lineitemlabel=\toks33
+\spx@lineitemlabel=\toks31
 )
 \c@sphinxscope=\count305
  (sphinxlatexindbibtoc.sty
@@ -554,7 +546,7 @@ Package: titlesec 2025/01/04 v2.17 Sectioning titles
 \aftertitleunit=\skip80
 \ttl@plus=\dimen277
 \ttl@minus=\dimen278
-\ttl@toksa=\toks34
+\ttl@toksa=\toks32
 \titlewidth=\dimen279
 \titlewidthlast=\dimen280
 \titlewidthfirst=\dimen281
@@ -588,7 +580,7 @@ Package: iftex 2022/02/03 v1.0f TeX engine tests
 \Gm@layoutheight=\dimen287
 \Gm@layouthoffset=\dimen288
 \Gm@layoutvoffset=\dimen289
-\Gm@dimlist=\toks35
+\Gm@dimlist=\toks33
 
 (C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
 (C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
@@ -732,43 +724,55 @@ Package: hypcap 2016/05/16 v1.12 Adjusting the anchors of captions (HO)
 (sphinxmessages.sty
 Package: sphinxmessages 2019/01/04 v2.0 Localized LaTeX macros (Sphinx team)
 )
+(C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
+Package: inputenc 2021/02/14 v1.3d Input encoding file
+\inpenc@prehook=\toks34
+\inpenc@posthook=\toks35
+)
+(C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+LaTeX Font Info:    Trying to load font information for T1+qtm on input line 11
+2.
+
+(C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/tex-gyre\t1qtm.fd
+File: t1qtm.fd 2009/09/25 v1.2 font definition file for T1/qtm
+)<<t1.cmap>>)
+(C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/newunicodechar\newunico
+dechar.sty
+Package: newunicodechar 2018/04/08 v1.2 Defining Unicode characters
+)
 \@indexfile=\write4
 \openout4 = `SVMSandQSVM.idx'.
 
 
 Writing index file SVMSandQSVM.idx
-LaTeX Font Info:    Trying to load font information for T1+qtm on input line 74
-.
-(C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/tex-gyre\t1qtm.fd
-File: t1qtm.fd 2009/09/25 v1.2 font definition file for T1/qtm
-)
+
 (C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count321
 \l__pdf_internal_box=\box120
-)
-No file SVMSandQSVM.aux.
+) (SVMSandQSVM.aux)
 \openout1 = `SVMSandQSVM.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
 
 (C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
@@ -853,23 +857,25 @@ e5-mapping.def)))
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 74.
+Package hyperref Info: Link coloring ON on input line 81.
+(SVMSandQSVM.out) (SVMSandQSVM.out)
 \@outlinefile=\write5
 \openout5 = `SVMSandQSVM.out'.
 
-Package hyperref Info: Option `pageanchor' set `false' on input line 82.
-LaTeX Font Info:    Trying to load font information for T1+qhv on input line 82
+Package hyperref Info: Option `pageanchor' set `false' on input line 89.
+LaTeX Font Info:    Trying to load font information for T1+qhv on input line 89
 .
+
 (C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/tex-gyre\t1qhv.fd
 File: t1qhv.fd 2009/09/25 v1.2 font definition file for T1/qhv
 )<<ot1.cmap>><<oml.cmap>><<oms.cmap>><<omx.cmap>>
-LaTeX Font Info:    Trying to load font information for U+msa on input line 82.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 89.
 
 
 (C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 82.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 89.
 
 
 (C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -882,17 +888,17 @@ r/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/tex-gyre/q-ec.enc}] [2
 
 
 ]
-No file SVMSandQSVM.toc.
+(SVMSandQSVM.toc)
 \tf@toc=\write6
 \openout6 = `SVMSandQSVM.toc'.
 
-[1
+ [1
 
 ] [2
 
 ]
 LaTeX Font Info:    Trying to load font information for T1+txtt on input line 9
-0.
+7.
 
 (C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\t1txtt.fd
 File: t1txtt.fd 2000/12/15 v3.1
@@ -902,9 +908,9 @@ File: t1txtt.fd 2000/12/15 v3.1
 ]
 Chapter 1.
 LaTeX Font Info:    Font shape `T1/txtt/b/n' in size <10> not available
-(Font)              Font shape `T1/txtt/bx/n' tried instead on input line 112.
+(Font)              Font shape `T1/txtt/bx/n' tried instead on input line 119.
 LaTeX Font Info:    Trying to load font information for TS1+qtm on input line 1
-19.
+26.
 (C:\Users\alvar\AppData\Local\Programs\MiKTeX\tex/latex/tex-gyre\ts1qtm.fd
 File: ts1qtm.fd 2009/09/25 v1.2 font definition file for TS1/qtm
 )
@@ -919,17 +925,6 @@ Chapter 2.
 Chapter 3.
 [7]
 
-! LaTeX Error: Unicode character α (U+03B1)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.378 ...{red}\bfseries{}|C\_i\textasciicircum{}α
-                                                  (1)|}{]}
-? 
-
 ! LaTeX Error: Unicode character ∏ (U+220F)
                not set up for use with LaTeX.
 
@@ -937,7 +932,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.394 K(x,z) = ∏
+l.401 K(x,z) = ∏
                   \_\{j=1..d\} {[} ∑\_\{i=0..n\} C\_i\textasciicircum{}α(...
 
 ? 
@@ -949,67 +944,9 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.394 K(x,z) = ∏\_\{j=1..d\} {[} ∑
+l.401 K(x,z) = ∏\_\{j=1..d\} {[} ∑
                                       \_\{i=0..n\} C\_i\textasciicircum{}α(...
 
-? 
-
-! LaTeX Error: Unicode character α (U+03B1)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.394 ... ∑\_\{i=0..n\} C\_i\textasciicircum{}α
-                                                  (x\_j)C\_i\textasciicircum...
-
-? 
-
-! LaTeX Error: Unicode character α (U+03B1)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.394 ...icircum{}α(x\_j)C\_i\textasciicircum{}α
-                                                  (z\_j) * u\_i\textasciicir...
-
-? 
-
-! LaTeX Error: Unicode character α (U+03B1)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.394 ...�(z\_j) * u\_i\textasciicircum{}2 * w\_α
-                                                  (x\_j,z\_j) {]}
-? 
-
-! LaTeX Error: Unicode character α (U+03B1)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.411 Peso w\_α
-                (x,z) = {[}(1\sphinxhyphen{}x\textasciicircum{}2)(1\sphinxhy...
-
-? 
-
-! LaTeX Error: Unicode character α (U+03B1)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.411 ...xtasciicircum{}2){]}\textasciicircum{}(α
-                                                  \sphinxhyphen{}1/2) + ε
 ? 
 
 ! LaTeX Error: Unicode character ε (U+03B5)
@@ -1019,7 +956,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.411 ...tasciicircum{}(α\sphinxhyphen{}1/2) + ε
+l.418 ...tasciicircum{}(α\sphinxhyphen{}1/2) + ε
                                                   
 ? 
 
@@ -1030,7 +967,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.427 K(x,z) = ∏
+l.434 K(x,z) = ∏
                   \_\{j=0..d\sphinxhyphen{}1\} {[} ∑\_\{i=0\}\textasciicir...
 
 ? 
@@ -1042,7 +979,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.427 ...= ∏\_\{j=0..d\sphinxhyphen{}1\} {[} ∑
+l.434 ...= ∏\_\{j=0..d\sphinxhyphen{}1\} {[} ∑
                                                   \_\{i=0\}\textasciicircum{...
 
 ? 
@@ -1060,60 +997,7 @@ Chapter 5.
 Chapter 6.
 [13] [14
 
-]
-
-LaTeX Warning: Reference `Analysis:module-Analysis' on page 15 undefined on inp
-ut line 645.
-
-
-LaTeX Warning: Reference `Analysis:module-Analysis.plots' on page 15 undefined 
-on input line 646.
-
-
-LaTeX Warning: Reference `Data:module-Data' on page 15 undefined on input line 
-649.
-
-
-LaTeX Warning: Reference `Data:module-Data.loader' on page 15 undefined on inpu
-t line 650.
-
-
-LaTeX Warning: Reference `experiments:module-experiments' on page 15 undefined 
-on input line 653.
-
-
-LaTeX Warning: Reference `hyper_opt:module-hyper_opt' on page 15 undefined on i
-nput line 656.
-
-
-LaTeX Warning: Reference `Kernels:module-Kernels' on page 15 undefined on input
- line 659.
-
-
-LaTeX Warning: Reference `Kernels:module-Kernels.all_kernels' on page 15 undefi
-ned on input line 660.
-
-
-LaTeX Warning: Reference `Kernels:module-Kernels.base' on page 15 undefined on 
-input line 661.
-
-
-LaTeX Warning: Reference `Kernels:module-Kernels.custom' on page 15 undefined o
-n input line 662.
-
-
-LaTeX Warning: Reference `Model:module-Model' on page 15 undefined on input lin
-e 665.
-
-
-LaTeX Warning: Reference `Model:module-Model.evaluate' on page 15 undefined on 
-input line 666.
-
-
-LaTeX Warning: Reference `Model:module-Model.train' on page 15 undefined on inp
-ut line 667.
-
-[15
+] [15
 
 
 ]
@@ -1123,43 +1007,31 @@ No file SVMSandQSVM.ind.
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `SVMSandQSVM.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `SVMSandQSVM.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  9B51596B1C1BA333216383F184F756CA;2954.
+Package rerunfilecheck Info: File `SVMSandQSVM.out' has not changed.
+(rerunfilecheck)             Checksum: 9B51596B1C1BA333216383F184F756CA;2954.
  ) 
 Here is how much of TeX's memory you used:
- 19933 strings out of 474485
- 360121 string characters out of 5743734
+ 19994 strings out of 474485
+ 361656 string characters out of 5743734
  1936542 words of memory out of 5000000
- 41767 multiletter control sequences out of 15000+600000
- 606199 words of font info for 75 fonts, out of 8000000 for 9000
+ 41819 multiletter control sequences out of 15000+600000
+ 605436 words of font info for 74 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
  72i,11n,83p,1202b,740s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\alvar\AppData\Local\MiKTeX\fonts/pk/modeless/public/txfonts/dpi600
-\t1xbtt.pk> <C:\Users\alvar\AppData\Local\MiKTeX\fonts/pk/modeless/public/txfon
-ts/dpi600\t1xtt.pk><C:/Users/alvar/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/amsfonts/cm/cmsy10.pfb><C:/Users/alvar/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/tex-gyre/qhvb.pfb><C:/Users/alvar/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/tex-gyre/qhvbi.pfb><C:/Users/alvar/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/tex-gyre/qhvr.pfb><C:/Users/alvar/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/tex-gyre/qtmb.pfb><C:/Users/alvar/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/public/tex-gyre/qtmr.pfb><C:/Users/alvar/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/tex-gyre/qtmri.pfb>
-Output written on SVMSandQSVM.pdf (19 pages, 209117 bytes).
+<C:/Users/alvar/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmmi10.pfb><C:/Users/alvar/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb><C:/Users/alvar/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/tex-gyre/qhvb.pfb><C:/Users/alvar/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/tex-gyre/qhvbi.pfb><C:/Users/alvar/AppData/Local/Programs/MiKTeX/font
+s/type1/public/tex-gyre/qhvr.pfb><C:/Users/alvar/AppData/Local/Programs/MiKTeX/
+fonts/type1/public/tex-gyre/qtmb.pfb><C:/Users/alvar/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/tex-gyre/qtmr.pfb><C:/Users/alvar/AppData/Local/Programs
+/MiKTeX/fonts/type1/public/tex-gyre/qtmri.pfb><C:/Users/alvar/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/txfonts/t1xbtt.pfb><C:/Users/alvar/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/txfonts/t1xtt.pfb>
+Output written on SVMSandQSVM.pdf (19 pages, 226989 bytes).
 PDF statistics:
- 251 PDF objects out of 1000 (max. 8388607)
+ 300 PDF objects out of 1000 (max. 8388607)
  64 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 197 words of extra memory for PDF output out of 10000 (max. 10000000)
 
