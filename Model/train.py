@@ -30,11 +30,10 @@ def train_svm(
     Si pca_dim!=None, aplica PCA(n_components=pca_dim) dentro del pipeline
     (previo al escalado y al SVC), fold a fold.
     """
-    steps = []
+    steps = [ ('scaler', MinMaxScaler(feature_range=(-1, 1)))]
     if pca_dim is not None:
         steps.append(('pca', PCA(n_components=pca_dim)))
     steps += [
-        ('scaler', MinMaxScaler(feature_range=(-1, 1))),
         ('svc',    SVC(kernel=kernel_func, C=C))
     ]
 
