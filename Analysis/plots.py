@@ -1,78 +1,7 @@
 # analysis/plots.py
-from typing import Tuple, List
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from matplotlib.axes import Axes
-from sklearn.base import ClassifierMixin
-from typing import Union
-from matplotlib.axes import Axes
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import LabelEncoder
 
-def plot_decision_boundary(
-    model: Union[ClassifierMixin, Pipeline],
-    X: np.ndarray,
-    y: np.ndarray,
-    ax: Axes,
-    title: str = 'Decision Boundary'
-) -> None:
-    """
-    Plot decision boundary and support vectors for 2D data.
-
-    :param model: Trained SVM or Pipeline containing an SVC with scaler
-    :param X: Array scaled or raw features (n_samples, 2)
-    :param y: True labels (n_samples,)
-    :param ax: Matplotlib Axes to plot on
-    :param title: Plot title
-    """
-    # Create mesh grid
-    x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
-    y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
-    xx, yy = np.meshgrid(
-        np.linspace(x_min, x_max, 200),
-        np.linspace(y_min, y_max, 200)
-    )
-    grid = np.c_[xx.ravel(), yy.ravel()]
-
-    # Predict, handling pipeline
-    if isinstance(model, Pipeline):
-        predict_fn = model.predict
-        svc = model.named_steps.get('svc') or model.named_steps.get('classifier')
-    else:
-        predict_fn = model.predict
-        svc = model
-
-    Z = predict_fn(grid)
-    if not np.issubdtype(np.array(Z).dtype, np.number):
-        Z = LabelEncoder().fit_transform(Z)
-    Z = np.array(Z, dtype=float).reshape(xx.shape)
-
-    # Plot decision regions
-    ax.contourf(xx, yy, Z, alpha=0.3)
-
-    # Scatter data points
-    ax.scatter(X[:, 0], X[:, 1], c=y, edgecolors='k', label='Data')
-
-    # Plot support vectors if valid
-    if hasattr(svc, 'support_vectors_'):
-        sv = svc.support_vectors_
-        # Debug print sv shape
-        # print(f"Support vectors shape: {sv.shape}")
-        if sv.ndim == 2 and sv.shape[1] >= 2:
-            ax.scatter(
-                sv[:, 0], sv[:, 1],
-                facecolors='none', edgecolors='yellow',
-                s=100, linewidths=1.5, label='Support Vectors'
-            )
-        else:
-            # Skip plotting if shape is invalid
-            pass
-
-    ax.set_xlabel('Feature 0')
-    ax.set_ylabel('Feature 1')
-    ax.set_title(title)
-    ax.legend()
 
 def plot_metrics_comparison(results, metrics=['accuracy', 'f1_score', 'n_support_vectors'], save_path=None, show: bool = True):
     """
