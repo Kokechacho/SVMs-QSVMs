@@ -6,7 +6,6 @@ import time
 from pathlib import Path
 import argparse
 import numpy as _np
-from sklearn.decomposition import PCA
 
 from Data.loader import load_all_datasets, load_expected_results
 from Kernels.all_kernels import build_kernels
@@ -16,8 +15,6 @@ from Analysis.plots import (
     plot_accuracy_diff_table,
     plot_pca_evolution
 )
-
-from sklearn.model_selection import train_test_split
 
 def main(config_path: str, do_plots: bool = True):
     # --- 1. Leer configuración ---
