@@ -9,54 +9,59 @@ from sklearn.metrics import make_scorer, f1_score
 from sklearn.svm import SVC
 
 
-def train_svm(X, y, kernel_func, C=1.0, cv=10, n_jobs=-1):
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.decomposition import PCA
+from sklearn.svm import SVC
+from sklearn.model_selection import StratifiedKFold
+from sklearn.metrics import f1_score
+import numpy as np
+
+def train_svm(
+    X, y,
+    kernel_func,
+    C=1.0,
+    cv=10,
+    n_jobs=-1,
+    pca_dim: int | None = None
+):
     """
-    Realiza validación cruzada con el kernel dado y devuelve métricas promedio,
-    incluyendo estadísticas de vectores soporte.
+    Realiza validación cruzada con el kernel dado.
+    Si pca_dim!=None, aplica PCA(n_components=pca_dim) dentro del pipeline
+    (previo al escalado y al SVC), fold a fold.
     """
-    pipe = Pipeline([
-        ('scaler', MinMaxScaler()),
-        ('svc', SVC(kernel=kernel_func, C=C))
-    ])
-    
-    # Configurar cross-validation
+    steps = []
+    if pca_dim is not None:
+        steps.append(('pca', PCA(n_components=pca_dim)))
+    steps += [
+        ('scaler', MinMaxScaler(feature_range=(-1, 1))),
+        ('svc',    SVC(kernel=kernel_func, C=C))
+    ]
+
+    pipe = Pipeline(steps)
     cv_splitter = StratifiedKFold(n_splits=cv)
-    support_proportions = []
-    acc_scores = []
-    f1_scores = []
-    
+    support_props, accs, f1s = [], [], []
+
     for train_idx, _ in cv_splitter.split(X, y):
-        X_train_fold, y_train_fold = X[train_idx], y[train_idx]
-        
-        # Entrenar modelo en el fold
-        pipe.fit(X_train_fold, y_train_fold)
-        
-        # Obtener porcentaje de vectores soporte
-        n_support = pipe.named_steps['svc'].support_.shape[0]
-        support_prop = (n_support / len(X_train_fold)) * 100  # Porcentaje
-        support_proportions.append(support_prop)
-        
-        # Calcular métricas en validation
-        X_val_fold, y_val_fold = X[~train_idx], y[~train_idx]
-        acc = pipe.score(X_val_fold, y_val_fold)
-        f1 = f1_score(y_val_fold, pipe.predict(X_val_fold), average='weighted')
-        
-        acc_scores.append(acc)
-        f1_scores.append(f1)
-    
-    # Convertir a arrays numpy
-    acc_scores = np.array(acc_scores)
-    f1_scores = np.array(f1_scores)
-    support_proportions = np.array(support_proportions)
-    
+        X_tr, y_tr = X[train_idx], y[train_idx]
+        pipe.fit(X_tr, y_tr)
+
+        n_sup = pipe.named_steps['svc'].support_.shape[0]
+        support_props.append(n_sup / len(X_tr) * 100)
+
+        X_val, y_val = X[~train_idx], y[~train_idx]
+        accs.append(pipe.score(X_val, y_val))
+        f1s.append(f1_score(y_val, pipe.predict(X_val), average='weighted'))
+
     return {
-        'accuracy': acc_scores.mean() * 100,
-        'accuracy_std': acc_scores.std() * 100,
-        'f1_score': f1_scores.mean() * 100,
-        'f1_score_std': f1_scores.std() * 100,
-        'support_vector_acc': support_proportions.mean(),
-        'support_vector_std': support_proportions.std()
+        'accuracy':          np.mean(accs) * 100,
+        'accuracy_std':      np.std(accs) * 100,
+        'f1_score':          np.mean(f1s) * 100,
+        'f1_score_std':      np.std(f1s) * 100,
+        'support_vector_acc': np.mean(support_props),
+        'support_vector_std': np.std(support_props)
     }
+
 
 def tune_svm(
     X: np.ndarray,

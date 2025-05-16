@@ -82,6 +82,9 @@ def plot_metrics_comparison(results, metrics=['accuracy', 'f1_score', 'n_support
     :param save_path: If provided, path to save the figure as .png
     """
     import matplotlib.pyplot as plt
+    results = [r for r in results if r.get('pca_dim') is None]
+    if not results:
+        return  # no hay nada que bar‑plotear
 
     kernel_names = [r['kernel'] for r in results]
 
@@ -159,3 +162,58 @@ def plot_accuracy_diff_table(
         plt.show()
     else:
         plt.close()
+
+def plot_pca_evolution(
+    results: list[dict],
+    metrics: list[str],
+    save_path: str | None = None,
+    show: bool = True
+):
+    """
+    Dibuja la evolución de múltiples métricas (accuracy, f1_score, etc.)
+    en función de la dimensión PCA (`pca_dim`), con una línea por kernel.
+    
+    :param results: lista de registros con campos 'kernel', 'pca_dim' y métricas.
+    :param metrics: lista de métricas a graficar.
+    :param save_path: ruta base para guardar las imágenes (sin la métrica).
+    :param show: si True, muestra las gráficas.
+    """
+    df = pd.DataFrame(results)
+    
+    if df.empty:
+        print("No hay datos PCA disponibles.")
+        return
+    if 'pca_dim' not in df.columns:
+        # No hay datos de PCA, salir sin error
+        return
+    
+    df = df.dropna(subset=['pca_dim'])
+    kernels = df['kernel'].unique()
+
+    for metric in metrics:
+        if metric not in df.columns:
+            print(f"[Advertencia] Métrica `{metric}` no encontrada.")
+            continue
+
+        fig, ax = plt.subplots(figsize=(8,5))
+        for k in kernels:
+            sub = df[df['kernel'] == k].sort_values('pca_dim')
+            ax.plot(sub['pca_dim'], sub[metric], marker='o', label=k)
+
+        ax.set_xlabel('n_components (PCA)')
+        ax.set_ylabel(metric.replace('_',' ').title())
+        dataset_name = df["dataset"].unique()[0]
+        ax.set_title(f'Evolución de {metric.replace("_", " ").title()} vs. PCA dim - {dataset_name}')
+        ax.legend()
+        ax.grid(True, linestyle='--', alpha=0.5)
+        plt.tight_layout()
+
+        if save_path:
+            metric_filename = f"{save_path.rstrip('.png')}_{metric}.png"
+            plt.savefig(metric_filename)
+            print(f"[Plot PCA] Guardado en {metric_filename}")
+
+        if show:
+            plt.show()
+        else:
+            plt.close()

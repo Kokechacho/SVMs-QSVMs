@@ -4,11 +4,7 @@
     [52, "ionosphere"],
     [15, "breast"]],
     "libsvm": [
-    ["australian_scale.txt", "australian"],
-    ["heart.txt", "heart"],
-    ["sonar.txt", "sonar"],
-    ["german.txt", "german"],
-    ["splice.txt", "splice"]
+    ["australian_scale.txt", "australian"]
   ],
     "libsvm_dir": "data/libsvm",
     "expected_results_file": "data/expected_results.csv"
@@ -42,5 +38,8 @@
     "results_dir": "results",
     "plots_dir": "results/plots",
     "log_level": "INFO"
-  }
+  },
+  "pca": {
+  "n_steps": 4
+}
 }
