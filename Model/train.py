@@ -41,14 +41,14 @@ def train_svm(
     cv_splitter = StratifiedKFold(n_splits=cv)
     support_props, accs, f1s = [], [], []
 
-    for train_idx, _ in cv_splitter.split(X, y):
+    for train_idx, test_idx in cv_splitter.split(X, y):
         X_tr, y_tr = X[train_idx], y[train_idx]
         pipe.fit(X_tr, y_tr)
 
         n_sup = pipe.named_steps['svc'].support_.shape[0]
         support_props.append(n_sup / len(X_tr) * 100)
 
-        X_val, y_val = X[~train_idx], y[~train_idx]
+        X_val, y_val = X[test_idx], y[test_idx]
         accs.append(pipe.score(X_val, y_val))
         f1s.append(f1_score(y_val, pipe.predict(X_val), average='weighted'))
 
