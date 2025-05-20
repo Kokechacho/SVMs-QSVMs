@@ -10,7 +10,7 @@
     "expected_results_file": "data/expected_results.csv"
   },
   "svm": {
-    "C": 25,
+    "C": 20,
     "kernel_types": ["linear", "poly", "rbf", "custom_hermite", "custom_gegen"],
     "poly": {
       "degree": 3,
@@ -24,8 +24,8 @@
       "degree": 5
     },
     "custom_gegen": {
-      "degree": 4,
-      "alpha": 1.4
+      "degree": 5,
+      "alpha": 0.2
     }
   },
   "cross_validation": {

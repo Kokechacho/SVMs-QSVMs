@@ -133,7 +133,7 @@ def gegenbauer_kernel(X: np.ndarray, Z: np.ndarray, n: int, alpha: float) -> np.
     for j in range(d):
         C_X[:, j, :] = compute_gegenbauer(X[:, j], n, alpha)
         C_Z[:, j, :] = compute_gegenbauer(Z[:, j], n, alpha)
-    u_sq = np.array([compute_u(i, alpha)**2 for i in range(n+1)])
+    u_sq = np.array([compute_u(i, alpha)**2 if alpha > 0.5 else 1 for i in range(n+1)])
     W = np.zeros((m, p, d), dtype=float)
     for j in range(d):
         W[:, :, j] = gegenbauer_weight(X[:, j], Z[:, j], alpha)
