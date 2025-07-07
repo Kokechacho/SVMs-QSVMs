@@ -5,7 +5,7 @@ import pandas as pd
 import time
 from pathlib import Path
 import argparse
-import numpy as _np
+import numpy as np
 
 from Data.loader import load_all_datasets, load_expected_results
 from Kernels.all_kernels import build_kernels
@@ -52,10 +52,17 @@ def main(config_path: str, do_plots: bool = True):
     for ds_name, X, y in datasets:
         log.info(f"=== Dataset: {ds_name} ===")
 
+        # Obtener proporción de clases -1 y 1
+        classes, counts = np.unique(y, return_counts=True)
+        total = len(y)
+        for cls, count in zip(classes, counts):
+            perc = 100 * count / total
+            log.info(f"Clase {cls}: {count} muestras ({perc:.2f}%)")
+
         n_feats = X.shape[1]-1
-        raw = _np.linspace(2, n_feats, num=pca_steps)
+        raw = np.linspace(2, n_feats, num=pca_steps)
         dims = sorted({
-            int(_np.clip(_np.round(v), 0, n_feats))
+            int(np.clip(np.round(v), 0, n_feats))
             for v in raw
         })
 

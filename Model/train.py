@@ -7,6 +7,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import GridSearchCV, cross_val_score, StratifiedKFold
 from sklearn.metrics import make_scorer, f1_score
 from sklearn.svm import SVC
+from collections import Counter
 
 
 from sklearn.pipeline import Pipeline
@@ -41,14 +42,32 @@ def train_svm(
     cv_splitter = StratifiedKFold(n_splits=cv)
     support_props, accs, f1s = [], [], []
 
-    for train_idx, test_idx in cv_splitter.split(X, y):
+    for fold, (train_idx, test_idx) in enumerate(cv_splitter.split(X, y), 1):
         X_tr, y_tr = X[train_idx], y[train_idx]
+        X_val, y_val = X[test_idx], y[test_idx]
+
+        # Mostrar proporción en entrenamiento
+        train_counts = Counter(y_tr)
+        total_tr = len(y_tr)
+        print(f"\nFold {fold} - Entrenamiento:")
+        for cls in sorted(train_counts):
+            pct = 100 * train_counts[cls] / total_tr
+            print(f"  Clase {cls}: {train_counts[cls]} muestras ({pct:.2f}%)")
+
+        # Mostrar proporción en validación
+        val_counts = Counter(y_val)
+        total_val = len(y_val)
+        print(f"Fold {fold} - Validación:")
+        for cls in sorted(val_counts):
+            pct = 100 * val_counts[cls] / total_val
+            print(f"  Clase {cls}: {val_counts[cls]} muestras ({pct:.2f}%)")
+
+        # Entrenar
         pipe.fit(X_tr, y_tr)
 
         n_sup = pipe.named_steps['svc'].support_.shape[0]
         support_props.append(n_sup / len(X_tr) * 100)
 
-        X_val, y_val = X[test_idx], y[test_idx]
         accs.append(pipe.score(X_val, y_val))
         f1s.append(f1_score(y_val, pipe.predict(X_val), average='weighted'))
 
