@@ -10,8 +10,8 @@
     "expected_results_file": "data/expected_results.csv"
   },
   "svm": {
-    "C": 20,
-    "kernel_types": ["linear", "poly", "rbf", "custom_hermite", "custom_gegen"],
+    "C": 15,
+    "kernel_types": ["linear", "poly", "rbf", "custom_hermite", "custom_gegen", "custom_alsalam"],
     "poly": {
       "degree": 3,
       "gamma": ["scale", "auto"],
@@ -21,11 +21,16 @@
       "gamma": ["scale", "auto"]
     },
     "custom_hermite": {
-      "degree": 5
+      "degree": 4
     },
     "custom_gegen": {
-      "degree": 5,
-      "alpha": 0.2
+      "degree": 3,
+      "alpha": 0.7
+    },
+    "custom_alsalam": {
+      "degree": 3,
+      "a": -1.5,
+      "q": 0.5
     }
   },
   "cross_validation": {

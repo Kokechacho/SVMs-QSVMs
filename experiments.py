@@ -13,7 +13,10 @@ from Model.train import train_svm
 from Analysis.plots import (
     plot_metrics_comparison,
     plot_accuracy_diff_table,
-    plot_pca_evolution
+    plot_pca_evolution,
+    plot_pca_evolution_global,
+    plot_pca_evolution_all_kernels,
+    plot_train_vs_val_metrics
 )
 
 def main(config_path: str, do_plots: bool = True):
@@ -41,7 +44,10 @@ def main(config_path: str, do_plots: bool = True):
     kernels = build_kernels(
         hermite_degree=svm_cfg['custom_hermite']['degree'],
         gegen_degree=svm_cfg['custom_gegen']['degree'],
-        gegen_alpha=svm_cfg['custom_gegen']['alpha']
+        gegen_alpha=svm_cfg['custom_gegen']['alpha'],
+        al_degree=svm_cfg['custom_alsalam']['degree'],
+        al_a=svm_cfg['custom_alsalam']['a'],
+        al_q=svm_cfg['custom_alsalam']['q']
     )
 
     # --- 4. Iterar datasets × kernels ---
@@ -60,7 +66,7 @@ def main(config_path: str, do_plots: bool = True):
             log.info(f"Clase {cls}: {count} muestras ({perc:.2f}%)")
 
         n_feats = X.shape[1]-1
-        raw = np.linspace(2, n_feats, num=pca_steps)
+        raw = np.linspace(3, n_feats, num=pca_steps)
         dims = sorted({
             int(np.clip(np.round(v), 0, n_feats))
             for v in raw
@@ -167,10 +173,35 @@ def main(config_path: str, do_plots: bool = True):
 
         plot_pca_evolution(
             df_ds.to_dict('records'),
-            metrics=['accuracy', 'support_vector_acc', 'train_time'],
+            metrics=['accuracy', 'support_vector_acc', 'f1_score', 'train_time'],
             save_path=os.path.join(cfg['output']['plots_dir'], f"{ds_name}_pca"),
             show=do_plots
         )
+
+    
+    metrics = ['accuracy', 'f1_score', 'precision', 'recall']
+    plot_train_vs_val_metrics(
+        records=records,
+        metrics=metrics,
+        save_path=os.path.join(cfg['output']['plots_dir'], 'train_vs_val_metrics.png'),
+        show=do_plots
+    )
+    
+    metrics = ['accuracy', 'f1_score', 'support_vector_acc', 'train_time']
+    plot_pca_evolution_global(
+        records=records,
+        metrics=metrics,
+        save_path=os.path.join(cfg['output']['plots_dir'], 'global_pca_evolution'),
+        show=do_plots
+    )
+    plot_pca_evolution_all_kernels(
+        records=records,
+        metrics=metrics,
+        save_path=os.path.join(cfg['output']['plots_dir'], 'kernel_pca'),
+        show=do_plots,
+        plot_median=True,
+        plot_std=True
+    )
 
     # --- 6. Guardar resultados globales ---
     df_results = pd.DataFrame(records)

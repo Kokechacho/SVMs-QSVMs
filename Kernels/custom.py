@@ -144,3 +144,154 @@ def gegenbauer_kernel(X: np.ndarray, Z: np.ndarray, n: int, alpha: float) -> np.
         sum_i = (Cj_X * u_sq).dot(Cj_Z.T)
         K *= sum_i * W[:, :, j]
     return K
+
+def compute_al_salam_carlitz_U(x: np.ndarray, q: float, a: float, n_max: int) -> np.ndarray:
+    """
+    Calcula los polinomios U_0..U_n_max de Al-Salam–Carlitz I evaluados en cada valor de x.
+    Utiliza la recurrencia:
+        U_{-1}(x) = 0, 
+        U_0(x) = 1,
+        U_1(x) = x - (a + 1),
+        U_{n+1}(x) = (x - (a + 1) q^n) * U_n(x) + a q^{n-1} (1 - q^n) * U_{n-1}(x)
+        
+    :param x: numpy array, shape (m,)
+    :param q: parámetro q
+    :param a: parámetro a
+    :param n_max: grado máximo
+    :return: matriz numpy shape (m, n_max+1) con U_0 ... U_n_max para cada x
+    """
+    x = np.asarray(x).ravel()
+    m = x.shape[0]
+    
+    # Matriz de salida: filas=muestras, columnas=U_0 a U_n_max
+    U = np.zeros((m, n_max + 1), dtype=float)
+    
+    # Condiciones iniciales
+    U[:, 0] = 1.0                       # U_0(x) = 1
+    if n_max >= 1:
+        U[:, 1] = x - (a + 1)           # U_1(x) = x - (a+1)
+    
+    # Recurrencia para n >= 1
+    for n in range(1, n_max):
+        qn = q ** n
+        qnm1 = q ** (n - 1)
+        U[:, n + 1] = ((x - (a + 1) * qn) * U[:, n] +
+                       a * qnm1 * (1 - qn) * U[:, n - 1])
+    
+    return U
+
+# ---------------------------------------------------------------------------------------------
+# Función auxiliar para calcular el operador de Pochhammer cuando tiende a infinito
+# La necesitamos para calcular la función de peso posterior
+# ---------------------------------------------------------------------------------------------
+
+def q_pochhammer_inf(z, q, n_terms=500):
+    """
+    Aproxima (z; q)_∞ ≈ ∏_{k=0}^{n_terms-1} (1 - z * q^k).
+    """
+    z = np.asarray(z, dtype=float)
+    result = np.ones_like(z)
+    qk = 1.0
+    for _ in range(n_terms):
+        result *= (1 - z * qk)
+        qk *= q
+    return result
+
+# ---------------------------------------------------------------------------------------------
+# FUNCIÓN DE PESO DE LOS AL-SALAM CARLIZT TIPO I 
+# ---------------------------------------------------------------------------------------------
+
+def weight_al_salam_carlitz(x, q, a, n_terms=500):
+    """
+    Función de peso para polinomios Al-Salam–Carlitz I:
+    
+        w(x; a, q) = (q*x; q)_∞ * (a^{-1}*q*x; q)_∞,
+    
+    aproximando cada Pochhammer infinito con n_terms factores.
+    
+    :param x: array o escalar de puntos
+    :param q: parámetro q (0 < q < 1)
+    :param a: parámetro a (no nulo)
+    :param n_terms: número de términos para truncar los productos
+    :return: array o escalar w(x)
+    """
+    x = np.asarray(x, dtype=float)
+    w1 = q_pochhammer_inf(q * x, q, n_terms)
+    w2 = q_pochhammer_inf((q * x) / a, q, n_terms)
+    return w1 * w2
+
+def scaling_factor_al_salam_carlitz(a, q, i, N):
+    """
+    Devuelve el factor de escalado:
+        scale = 1 / (sqrt(N+1) * |U_i^a(-1; q)|)
+    
+    :param a: parámetro a
+    :param q: parámetro q
+    :param i: grado del polinomio U_i
+    :return: escala (float)
+    """
+    U = compute_al_salam_carlitz_U(-1, q, a, i)
+    U_i_abs = np.abs(U[0, i])
+    
+    if U_i_abs == 0:
+        return 0.0  # evitar división por cero
+    return 1.0 / (np.sqrt(N + 1) * U_i_abs)
+
+
+def kernel_AlSalam(X: np.ndarray, Z: np.ndarray, q: float, a: float, N: int, w) -> np.ndarray:
+    """
+    Kernel de productos de polinomios Al-Salam–Carlitz I con escalado y peso.
+
+    K(x, z) = ∏_{dim=1}^d
+      ⟨ φ_dim(x), φ_dim(z) ⟩
+
+    donde φ_dim(t) es el vector de características en la dimensión 'dim':
+      φ_dim(t)[i] = U_i(t; q, a) * scale_i * w(t; q, a)
+
+    con:
+     - U_i(t; q, a): polinomio de grado i evaluado en t
+     - scale_i = 1 / (√(i+1) · |U_i(-1; q, a)|)^2
+     - w(t; q, a): función de peso
+
+    :param X: matriz de datos de entrenamiento, forma (nX, d)
+    :param Z: matriz de datos de prueba, forma (nZ, d)
+    :param q: parámetro q de los polinomios
+    :param a: parámetro a de los polinomios
+    :param N: grado máximo de polinomios
+    :return: matriz del kernel K de forma (nX, nZ)
+    """
+    nX, d = X.shape
+    nZ, _ = Z.shape
+
+    # Inicializamos el kernel como 1 (producto acumulado por dimensión)
+    K = np.ones((nX, nZ), dtype=float)
+
+    # Precomputamos los factores de escalado scale_i para i=0..N
+    scales = np.array([scaling_factor_al_salam_carlitz(a, q, i, N) for i in range(N + 1)])**2
+    # scales[i] = 1 / (√(i+1) · |U_i(-1; q,a)|)**2
+
+    for dim in range(d):
+        # 1) Evaluamos los polinomios U_0..U_N en toda la dimensión dim
+        Ux = compute_al_salam_carlitz_U(X[:, dim:dim+1].ravel(), q, a, N)  # (nX, N+1)
+        Uz = compute_al_salam_carlitz_U(Z[:, dim:dim+1].ravel(), q, a, N)  # (nZ, N+1)
+
+        # 2) Función de peso w(t) para esa dimensión
+        wx = weight_al_salam_carlitz(X[:, dim], q, a).reshape(-1, 1) # (nX, 1)
+        wz = weight_al_salam_carlitz(Z[:, dim], q, a).reshape(-1, 1) # (nZ, 1)
+        wx_norm = wx / w    # w es el valor máximo, escalar
+        wz_norm = wz / w
+        wx_scaled = 0.9 * wx_norm + 0.1
+        wz_scaled = 0.9 * wz_norm + 0.1
+
+        # 3) Construimos las características φ = U * scale * w
+        #    Escalado de cada columna i con scales[i]
+        phi_x = Ux * scales[None, :] * wx_scaled        # (nX, N+1)
+        phi_z = Uz * scales[None, :] * wz_scaled         # (nZ, N+1)
+
+        # 4) Producto interno entre φ_x y φ_z para esta dimensión
+        K_dim = phi_x @ phi_z.T   # (nX, nZ)
+
+        # 5) Acumulamos por producto en cada dimensión
+        K *= K_dim
+
+    return K

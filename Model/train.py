@@ -5,7 +5,7 @@ from sklearn.base import BaseEstimator
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import GridSearchCV, cross_val_score, StratifiedKFold
-from sklearn.metrics import make_scorer, f1_score
+from sklearn.metrics import f1_score, precision_score, recall_score
 from sklearn.svm import SVC
 from collections import Counter
 
@@ -30,55 +30,85 @@ def train_svm(
     Realiza validación cruzada con el kernel dado.
     Si pca_dim!=None, aplica PCA(n_components=pca_dim) dentro del pipeline
     (previo al escalado y al SVC), fold a fold.
+    Devuelve estadísticas de validación y entrenamiento:
+      - accuracy
+      - accuracy_std
+      - train_accuracy
+      - train_accuracy_std
+      - f1_score, f1_score_std (validación)
+      - train_f1_score, train_f1_score_std
+      - precision, precision_std (validación)
+      - train_precision, train_precision_std
+      - recall, recall_std (validación)
+      - train_recall, train_recall_std
+      - support_vector_acc, support_vector_std
     """
-    steps = [ ('scaler', MinMaxScaler(feature_range=(-1, 1)))]
+    # Montar pipeline
+    steps = [('scaler', MinMaxScaler(feature_range=(-1, 1)))]
     if pca_dim is not None:
         steps.append(('pca', PCA(n_components=pca_dim)))
-    steps += [
-        ('svc',    SVC(kernel=kernel_func, C=C))
-    ]
-
+    steps.append(('svc', SVC(kernel=kernel_func, C=C)))
     pipe = Pipeline(steps)
+
     cv_splitter = StratifiedKFold(n_splits=cv)
-    support_props, accs, f1s = [], [], []
+
+    # Listas para métricas
+    support_props = []
+    acc_val, acc_tr = [], []
+    f1_val, f1_tr = [], []
+    prec_val, prec_tr = [], []
+    rec_val, rec_tr = [], []
 
     for fold, (train_idx, test_idx) in enumerate(cv_splitter.split(X, y), 1):
         X_tr, y_tr = X[train_idx], y[train_idx]
         X_val, y_val = X[test_idx], y[test_idx]
 
-        # Mostrar proporción en entrenamiento
-        train_counts = Counter(y_tr)
-        total_tr = len(y_tr)
-        print(f"\nFold {fold} - Entrenamiento:")
-        for cls in sorted(train_counts):
-            pct = 100 * train_counts[cls] / total_tr
-            print(f"  Clase {cls}: {train_counts[cls]} muestras ({pct:.2f}%)")
-
-        # Mostrar proporción en validación
-        val_counts = Counter(y_val)
-        total_val = len(y_val)
-        print(f"Fold {fold} - Validación:")
-        for cls in sorted(val_counts):
-            pct = 100 * val_counts[cls] / total_val
-            print(f"  Clase {cls}: {val_counts[cls]} muestras ({pct:.2f}%)")
-
-        # Entrenar
+        # Entrenamiento
         pipe.fit(X_tr, y_tr)
 
+        # Proporción de vectores de soporte en train
         n_sup = pipe.named_steps['svc'].support_.shape[0]
         support_props.append(n_sup / len(X_tr) * 100)
 
-        accs.append(pipe.score(X_val, y_val))
-        f1s.append(f1_score(y_val, pipe.predict(X_val), average='weighted'))
+        # Predicciones
+        y_pred_val = pipe.predict(X_val)
+        y_pred_tr  = pipe.predict(X_tr)
 
-    return {
-        'accuracy':          np.mean(accs) * 100,
-        'accuracy_std':      np.std(accs) * 100,
-        'f1_score':          np.mean(f1s) * 100,
-        'f1_score_std':      np.std(f1s) * 100,
-        'support_vector_acc': np.mean(support_props),
-        'support_vector_std': np.std(support_props)
+        # Accuracy
+        acc_val.append(pipe.score(X_val, y_val))
+        acc_tr.append(pipe.score(X_tr, y_tr))
+        # F1
+        f1_val.append(f1_score(y_val, y_pred_val, average='weighted'))
+        f1_tr.append(f1_score(y_tr, y_pred_tr, average='weighted'))
+        # Precision
+        prec_val.append(precision_score(y_val, y_pred_val, average='weighted'))
+        prec_tr.append(precision_score(y_tr, y_pred_tr, average='weighted'))
+        # Recall
+        rec_val.append(recall_score(y_val, y_pred_val, average='weighted'))
+        rec_tr.append(recall_score(y_tr, y_pred_tr, average='weighted'))
+
+    # Agregar estadísticas
+    stats = {
+        'accuracy':               np.mean(acc_val) * 100,
+        'accuracy_std':           np.std(acc_val) * 100,
+        'train_accuracy':         np.mean(acc_tr) * 100,
+        'train_accuracy_std':     np.std(acc_tr) * 100,
+        'f1_score':               np.mean(f1_val) * 100,
+        'f1_score_std':           np.std(f1_val) * 100,
+        'train_f1_score':         np.mean(f1_tr) * 100,
+        'train_f1_score_std':     np.std(f1_tr) * 100,
+        'precision':              np.mean(prec_val) * 100,
+        'precision_std':          np.std(prec_val) * 100,
+        'train_precision':        np.mean(prec_tr) * 100,
+        'train_precision_std':    np.std(prec_tr) * 100,
+        'recall':                 np.mean(rec_val) * 100,
+        'recall_std':             np.std(rec_val) * 100,
+        'train_recall':           np.mean(rec_tr) * 100,
+        'train_recall_std':       np.std(rec_tr) * 100,
+        'support_vector_acc':     np.mean(support_props),
+        'support_vector_std':     np.std(support_props)
     }
+    return stats
 
 
 def tune_svm(
