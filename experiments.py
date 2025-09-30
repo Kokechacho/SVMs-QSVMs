@@ -90,7 +90,11 @@ def main(config_path: str, do_plots: bool = True):
             elapsed = time.perf_counter() - start
             metrics['train_time'] = elapsed
 
-            log.info(f"-> {name}: {metrics}")
+            log.info(f"-> {name}: "
+            f"accuracy={metrics['accuracy']:.2f}, "
+            f"f1_score={metrics['f1_score']:.2f}, "
+            f"support_vector_acc={metrics['support_vector_acc']:.2f}, "
+            f"train_time={metrics['train_time']:.2f}s")
 
             # Registrar
             rec = {

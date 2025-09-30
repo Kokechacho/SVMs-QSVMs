@@ -4,7 +4,11 @@
     [52, "ionosphere"],
     [15, "breast"]],
     "libsvm": [
-    ["australian_scale.txt", "australian"]
+    ["australian_scale.txt", "australian"],
+    ["german.txt", "german"],
+    ["heart.txt", "heart"],
+    ["fourclass.txt", "fourclass"],
+    ["splice.txt", "splice"]
   ],
     "libsvm_dir": "data/libsvm",
     "expected_results_file": "data/expected_results.csv"
@@ -28,9 +32,9 @@
       "alpha": 0.7
     },
     "custom_alsalam": {
-      "degree": 3,
-      "a": -1.5,
-      "q": 0.5
+      "degree": 4,
+      "a": -1,
+      "q": 0.75
     }
   },
   "cross_validation": {

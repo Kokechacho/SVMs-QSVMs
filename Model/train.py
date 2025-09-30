@@ -66,17 +66,20 @@ def train_svm(
         # Entrenamiento
         pipe.fit(X_tr, y_tr)
 
-        # Proporción de vectores de soporte en train
-        n_sup = pipe.named_steps['svc'].support_.shape[0]
-        support_props.append(n_sup / len(X_tr) * 100)
-
         # Predicciones
         y_pred_val = pipe.predict(X_val)
         y_pred_tr  = pipe.predict(X_tr)
 
         # Accuracy
-        acc_val.append(pipe.score(X_val, y_val))
+        acc = pipe.score(X_val, y_val)
+        acc_val.append(acc)
         acc_tr.append(pipe.score(X_tr, y_tr))
+
+        # Proporción de vectores de soporte en train
+        n_sup = pipe.named_steps['svc'].support_.shape[0]
+        support_props.append(n_sup / len(X_tr) * 100)
+        # support_props.append(n_sup / acc * 100)
+
         # F1
         f1_val.append(f1_score(y_val, y_pred_val, average='weighted'))
         f1_tr.append(f1_score(y_tr, y_pred_tr, average='weighted'))

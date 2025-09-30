@@ -238,7 +238,7 @@ def scaling_factor_al_salam_carlitz(a, q, i, N):
     return 1.0 / (np.sqrt(N + 1) * U_i_abs)
 
 
-def kernel_AlSalam(X: np.ndarray, Z: np.ndarray, q: float, a: float, N: int, w) -> np.ndarray:
+def kernel_AlSalam(X: np.ndarray, Z: np.ndarray, q: float, a: float, N: int) -> np.ndarray:
     """
     Kernel de productos de polinomios Al-Salam–Carlitz I con escalado y peso.
 
@@ -267,7 +267,7 @@ def kernel_AlSalam(X: np.ndarray, Z: np.ndarray, q: float, a: float, N: int, w) 
     K = np.ones((nX, nZ), dtype=float)
 
     # Precomputamos los factores de escalado scale_i para i=0..N
-    scales = np.array([scaling_factor_al_salam_carlitz(a, q, i, N) for i in range(N + 1)])**2
+    # scales = np.array([scaling_factor_al_salam_carlitz(a, q, i, N) for i in range(N + 1)])**2
     # scales[i] = 1 / (√(i+1) · |U_i(-1; q,a)|)**2
 
     for dim in range(d):
@@ -278,15 +278,14 @@ def kernel_AlSalam(X: np.ndarray, Z: np.ndarray, q: float, a: float, N: int, w) 
         # 2) Función de peso w(t) para esa dimensión
         wx = weight_al_salam_carlitz(X[:, dim], q, a).reshape(-1, 1) # (nX, 1)
         wz = weight_al_salam_carlitz(Z[:, dim], q, a).reshape(-1, 1) # (nZ, 1)
-        wx_norm = wx / w    # w es el valor máximo, escalar
-        wz_norm = wz / w
-        wx_scaled = 0.9 * wx_norm + 0.1
-        wz_scaled = 0.9 * wz_norm + 0.1
+        wx_scaled = np.maximum(wx, 0.1)
+        wz_scaled = np.maximum(wz, 0.1)
+
 
         # 3) Construimos las características φ = U * scale * w
         #    Escalado de cada columna i con scales[i]
-        phi_x = Ux * scales[None, :] * wx_scaled        # (nX, N+1)
-        phi_z = Uz * scales[None, :] * wz_scaled         # (nZ, N+1)
+        phi_x = Ux * wx_scaled        # (nX, N+1)
+        phi_z = Uz * wz_scaled         # (nZ, N+1)
 
         # 4) Producto interno entre φ_x y φ_z para esta dimensión
         K_dim = phi_x @ phi_z.T   # (nX, nZ)
