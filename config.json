@@ -7,8 +7,7 @@
     ["australian_scale.txt", "australian"],
     ["german.txt", "german"],
     ["heart.txt", "heart"],
-    ["fourclass.txt", "fourclass"],
-    ["splice.txt", "splice"]
+    ["fourclass.txt", "fourclass"]
   ],
     "libsvm_dir": "data/libsvm",
     "expected_results_file": "data/expected_results.csv"

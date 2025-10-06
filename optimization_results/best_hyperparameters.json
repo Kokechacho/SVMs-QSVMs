@@ -1,0 +1,198 @@
+{
+  "haberman_LINEAR": {
+    "C": 96
+  },
+  "haberman_POLY": {
+    "C": 65,
+    "degree": 4,
+    "coef0": 2.419435738028272
+  },
+  "haberman_RBF": {
+    "C": 31,
+    "gamma_type": "value",
+    "gamma_value": 0.5438617839888895
+  },
+  "haberman_HERMITE": {
+    "C": 81,
+    "degree": 2
+  },
+  "haberman_GEGEN": {
+    "C": 94,
+    "degree": 2,
+    "alpha": -0.333774392204971
+  },
+  "haberman_ALSALAM": {
+    "C": 18,
+    "degree": 2,
+    "a": -1,
+    "q": 0.6717697189209907
+  },
+  "ionosphere_LINEAR": {
+    "C": 54
+  },
+  "ionosphere_POLY": {
+    "C": 94,
+    "degree": 2,
+    "coef0": 2.6798932152698907
+  },
+  "ionosphere_RBF": {
+    "C": 14,
+    "gamma_type": "value",
+    "gamma_value": 0.03736724789783735
+  },
+  "ionosphere_HERMITE": {
+    "C": 56,
+    "degree": 6
+  },
+  "ionosphere_GEGEN": {
+    "C": 53,
+    "degree": 3,
+    "alpha": 0.32811830707906187
+  },
+  "ionosphere_ALSALAM": {
+    "C": 98,
+    "degree": 3,
+    "a": -1,
+    "q": 0.19
+  },
+  "breast_LINEAR": {
+    "C": 68
+  },
+  "breast_POLY": {
+    "C": 11,
+    "degree": 4,
+    "coef0": 0.020871878193822913
+  },
+  "breast_RBF": {
+    "C": 48,
+    "gamma_type": "value",
+    "gamma_value": 1.9755439224228917
+  },
+  "breast_HERMITE": {
+    "C": 11,
+    "degree": 4
+  },
+  "breast_GEGEN": {
+    "C": 89,
+    "degree": 3,
+    "alpha": 0.003982196453233548
+  },
+  "breast_ALSALAM": {
+    "C": 16,
+    "degree": 7,
+    "a": -1,
+    "q": 0.64
+  },
+  "australian_LINEAR": {
+    "C": 58
+  },
+  "australian_POLY": {
+    "C": 18,
+    "degree": 2,
+    "coef0": 1.8237592765833797
+  },
+  "australian_RBF": {
+    "C": 15,
+    "gamma_type": "value",
+    "gamma_value": 0.09192269049245871
+  },
+  "australian_HERMITE": {
+    "C": 76,
+    "degree": 6
+  },
+  "australian_GEGEN": {
+    "C": 26,
+    "degree": 6,
+    "alpha": 0.08378626981068571
+  },
+  "australian_ALSALAM": {
+    "C": 12,
+    "degree": 2,
+    "a": -1,
+    "q": 0.56
+  },
+  "german_LINEAR": {
+    "C": 9
+  },
+  "german_POLY": {
+    "C": 42,
+    "degree": 1,
+    "coef0": 1.554449749100553
+  },
+  "german_RBF": {
+    "C": 7,
+    "gamma_type": "value",
+    "gamma_value": 0.031979814318329795
+  },
+  "german_HERMITE": {
+    "C": 42,
+    "degree": 4
+  },
+  "german_GEGEN": {
+    "C": 36,
+    "degree": 2,
+    "alpha": 0.02444556132536569
+  },
+  "german_ALSALAM": {
+    "C": 52,
+    "degree": 4,
+    "a": -1,
+    "q": 0.2
+  },
+  "heart_LINEAR": {
+    "C": 46
+  },
+  "heart_POLY": {
+    "C": 97,
+    "degree": 1,
+    "coef0": 0.5482902264254663
+  },
+  "heart_RBF": {
+    "C": 44,
+    "gamma_type": "value",
+    "gamma_value": 0.01796195275910707
+  },
+  "heart_HERMITE": {
+    "C": 80,
+    "degree": 6
+  },
+  "heart_GEGEN": {
+    "C": 7,
+    "degree": 5,
+    "alpha": -0.06623205752300282
+  },
+  "heart_ALSALAM": {
+    "C": 13,
+    "degree": 5,
+    "a": -1,
+    "q": 0.5832419609537628
+  },
+  "fourclass_LINEAR": {
+    "C": 4
+  },
+  "fourclass_POLY": {
+    "C": 55,
+    "degree": 6,
+    "coef0": 2.2043052388484097
+  },
+  "fourclass_RBF": {
+    "C": 21,
+    "gamma_type": "value",
+    "gamma_value": 3.8992407401948865
+  },
+  "fourclass_HERMITE": {
+    "C": 100,
+    "degree": 6
+  },
+  "fourclass_GEGEN": {
+    "C": 48,
+    "degree": 6,
+    "alpha": 0.4629762880189183
+  },
+  "fourclass_ALSALAM": {
+    "C": 60,
+    "degree": 6,
+    "a": -1,
+    "q": 0.3764641318810576
+  }
+}

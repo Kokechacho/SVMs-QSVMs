@@ -20,20 +20,16 @@
                 "australian"
             ],
             [
-                "heart.txt",
-                "heart"
-            ],
-            [
-                "sonar.txt",
-                "sonar"
-            ],
-            [
                 "german.txt",
                 "german"
             ],
             [
-                "splice.txt",
-                "splice"
+                "heart.txt",
+                "heart"
+            ],
+            [
+                "fourclass.txt",
+                "fourclass"
             ]
         ],
         "libsvm_dir": "data/libsvm",
@@ -46,7 +42,8 @@
             "poly",
             "rbf",
             "custom_hermite",
-            "custom_gegen"
+            "custom_gegen",
+            "custom_alsalam"
         ],
         "poly": {
             "degree": 3,
@@ -63,11 +60,16 @@
             ]
         },
         "custom_hermite": {
-            "degree": 4
+            "degree": 3
         },
         "custom_gegen": {
             "degree": 3,
-            "alpha": 0.55
+            "alpha": -0.2
+        },
+        "custom_alsalam": {
+            "degree": 3,
+            "a": -1,
+            "q": 0.2
         }
     },
     "cross_validation": {
@@ -80,5 +82,8 @@
         "results_dir": "hparam_results\\run_2\\results",
         "plots_dir": "hparam_results\\run_2\\plots",
         "log_level": "INFO"
+    },
+    "pca": {
+        "n_steps": 0
     }
 }

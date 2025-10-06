@@ -24,33 +24,20 @@ def train_svm(
     C=1.0,
     cv=10,
     n_jobs=-1,
-    pca_dim: int | None = None
+    pca_dim: int | None = None,
+    random_state: int | None = None
 ):
     """
     Realiza validación cruzada con el kernel dado.
-    Si pca_dim!=None, aplica PCA(n_components=pca_dim) dentro del pipeline
-    (previo al escalado y al SVC), fold a fold.
-    Devuelve estadísticas de validación y entrenamiento:
-      - accuracy
-      - accuracy_std
-      - train_accuracy
-      - train_accuracy_std
-      - f1_score, f1_score_std (validación)
-      - train_f1_score, train_f1_score_std
-      - precision, precision_std (validación)
-      - train_precision, train_precision_std
-      - recall, recall_std (validación)
-      - train_recall, train_recall_std
-      - support_vector_acc, support_vector_std
     """
     # Montar pipeline
     steps = [('scaler', MinMaxScaler(feature_range=(-1, 1)))]
     if pca_dim is not None:
         steps.append(('pca', PCA(n_components=pca_dim)))
-    steps.append(('svc', SVC(kernel=kernel_func, C=C)))
+    steps.append(('svc', SVC(kernel=kernel_func, C=C, random_state=random_state)))
     pipe = Pipeline(steps)
 
-    cv_splitter = StratifiedKFold(n_splits=cv)
+    cv_splitter = StratifiedKFold(n_splits=cv, shuffle=True, random_state=random_state)
 
     # Listas para métricas
     support_props = []
@@ -80,15 +67,15 @@ def train_svm(
         support_props.append(n_sup / len(X_tr) * 100)
         # support_props.append(n_sup / acc * 100)
 
-        # F1
-        f1_val.append(f1_score(y_val, y_pred_val, average='weighted'))
-        f1_tr.append(f1_score(y_tr, y_pred_tr, average='weighted'))
-        # Precision
-        prec_val.append(precision_score(y_val, y_pred_val, average='weighted'))
-        prec_tr.append(precision_score(y_tr, y_pred_tr, average='weighted'))
-        # Recall
-        rec_val.append(recall_score(y_val, y_pred_val, average='weighted'))
-        rec_tr.append(recall_score(y_tr, y_pred_tr, average='weighted'))
+        # F1, Precision, Recall con zero_division=0 para evitar warnings
+        f1_val.append(f1_score(y_val, y_pred_val, average='weighted', zero_division=0))
+        f1_tr.append(f1_score(y_tr, y_pred_tr, average='weighted', zero_division=0))
+        
+        prec_val.append(precision_score(y_val, y_pred_val, average='weighted', zero_division=0))
+        prec_tr.append(precision_score(y_tr, y_pred_tr, average='weighted', zero_division=0))
+        
+        rec_val.append(recall_score(y_val, y_pred_val, average='weighted', zero_division=0))
+        rec_tr.append(recall_score(y_tr, y_pred_tr, average='weighted', zero_division=0))
 
     # Agregar estadísticas
     stats = {

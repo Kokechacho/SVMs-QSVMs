@@ -1,6 +1,6 @@
 import logging
 from pathlib import Path
-from typing import List, Tuple
+from typing import List, Tuple, Optional
 
 import numpy as np
 import pandas as pd
@@ -45,16 +45,75 @@ def load_expected_results() -> pd.DataFrame:
     par (dataset, kernel).
     Columnas: ['dataset', 'kernel', 'accuracy']
     """
-    # Convertir lista de dicts a DataFrame largo
     df = pd.DataFrame(_EXPECTED_RESULTS)
     df_long = df.melt(id_vars=['dataset'], var_name='kernel', value_name='accuracy')
     log.info(f"Cargados resultados esperados para {len(df_long)} combinaciones")
     return df_long
 
+def list_available_libsvm(libsvm_dir: Optional[Path] = None) -> List[str]:
+    """
+    Return a list of dataset base-names available in the LIBSVM_DIR.
+    If libsvm_dir is provided, it uses that path; otherwise uses default LIBSVM_DIR.
+    """
+    d = libsvm_dir or LIBSVM_DIR
+    out: List[str] = []
+    if not d.exists():
+        log.warning(f"LIBSVM_DIR '{d}' does not exist.")
+        return out
+    for p in d.iterdir():
+        if not p.is_file():
+            continue
+        if p.suffix.lower() in {'.txt', '.data', '.libsvm'}:
+            out.append(p.stem)
+    log.info(f"Found {len(out)} libsvm files in {d}")
+    return out
+
+def load_dataset(name: str) -> Tuple[str, np.ndarray, np.ndarray]:
+    """
+    Attempt to load a single dataset by name.
+
+    Strategy:
+    1) Search LIBSVM_DIR for files whose stem or filename contains the requested name (case-insensitive).
+       If found, load with load_svmlight_file and return (name, X, y).
+    2) If not found, raise FileNotFoundError so caller can fallback to load_all_datasets.
+    """
+    name_l = name.strip().lower()
+
+    # 1) Try libsvm directory
+    if LIBSVM_DIR.exists():
+        for p in LIBSVM_DIR.iterdir():
+            if not p.is_file():
+                continue
+            stem = p.stem.strip().lower()
+            fname = p.name.strip().lower()
+            # match exact or substring (allow "a1a" match "a1a.txt")
+            if name_l == stem or name_l == fname or name_l in stem or name_l in fname:
+                try:
+                    Xs, y = load_svmlight_file(str(p), zero_based=True)
+                    X = Xs.toarray()
+                    log.info(f"Loaded LIBSVM dataset '{name}' from file {p} with shape {X.shape}")
+                    return (name, X, y)
+                except Exception as e:
+                    log.warning(f"Failed to load {p} as LIBSVM: {e}")
+                    # continue searching other files
+
+    # 2) (Optional) Try to fetch from UCI by matching names in _EXPECTED_RESULTS (best-effort)
+    #    Here we don't have a mapping to UCI IDs; so we attempt a best-effort strategy:
+    #    if the requested name matches one of the expected dataset names, we try to fetch
+    expected_names = {str(d['dataset']).strip().lower(): d for d in _EXPECTED_RESULTS}
+    if name_l in expected_names:
+        # No UCI id provided; user should rely on load_all_datasets with uci_list in config.
+        log.warning(f"Dataset '{name}' is listed in EXPECTED_RESULTS but no automatic UCI id is available. "
+                    "Falling back: caller should use load_all_datasets with the appropriate uci id in config.")
+        raise FileNotFoundError(f"UCI single-dataset fetch not implemented for '{name}' (no id mapping).")
+
+    # If nothing found:
+    raise FileNotFoundError(f"Dataset '{name}' not found in LIBSVM_DIR ({LIBSVM_DIR}).")
+
 def load_all_datasets(
-    uci_list: List[Tuple[int,str]],
+    uci_list: List[Tuple[int, str]],
     libsvm_dir: Path,
-    libsvm_files: List[Tuple[str,str]]
+    libsvm_files: List[Tuple[str, str]]
 ) -> List[Tuple[str, np.ndarray, np.ndarray]]:
     """
     Carga datasets según la configuración recibida:
@@ -65,19 +124,28 @@ def load_all_datasets(
     datasets = []
     # UCI
     for ds_id, name in uci_list:
-        df = fetch_ucirepo(id=ds_id).data
-        X = df.features.values; y = df.targets.values.ravel()
-        mask = ~np.isnan(X).any(axis=1)
-        X, y = X[mask], y[mask]
-        log.info(f"UCI '{name}': {X.shape}")
-        datasets.append((name, X, y))
+        try:
+            df = fetch_ucirepo(id=ds_id).data
+            X = df.features.values; y = df.targets.values.ravel()
+            mask = ~np.isnan(X).any(axis=1)
+            X, y = X[mask], y[mask]
+            log.info(f"UCI '{name}': {X.shape}")
+            datasets.append((name, X, y))
+        except Exception as e:
+            log.warning(f"Failed to load UCI dataset id={ds_id}, name={name}: {e}")
 
-    # LIBSVM
+    # LIBSVM (explicit list)
     for filename, name in libsvm_files:
         path = libsvm_dir / filename
-        Xs, y = load_svmlight_file(str(path), zero_based=True)
-        X = Xs.toarray()
-        log.info(f"LIBSVM '{name}': {X.shape}")
-        datasets.append((name, X, y))
+        if not path.exists():
+            log.warning(f"LIBSVM file not found: {path}")
+            continue
+        try:
+            Xs, y = load_svmlight_file(str(path), zero_based=True)
+            X = Xs.toarray()
+            log.info(f"LIBSVM '{name}': {X.shape}")
+            datasets.append((name, X, y))
+        except Exception as e:
+            log.warning(f"Failed to load LIBSVM file {path}: {e}")
 
     return datasets

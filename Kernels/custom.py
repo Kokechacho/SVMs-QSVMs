@@ -1,6 +1,7 @@
 from typing import Callable
 import numpy as np
 from sklearn.metrics.pairwise import check_pairwise_arrays
+from scipy.special import eval_gegenbauer
 
 
 def compute_he(x: np.ndarray, max_order: int) -> np.ndarray:
@@ -74,6 +75,50 @@ def hermite_kernel_matrix(X: np.ndarray, Y: np.ndarray, n: int) -> np.ndarray:
 
     return K
 
+def compute_he(x: np.ndarray, max_order: int) -> np.ndarray:
+    """
+    Hermite probabilistas He_0..He_max_order, vectorizado.
+    """
+    x = np.asarray(x).ravel()
+    n_samples = x.shape[0]
+    He = np.zeros((n_samples, max_order + 1), dtype=float)
+    He[:, 0] = 1
+    if max_order >= 1:
+        He[:, 1] = x
+    for i in range(1, max_order):
+        He[:, i + 1] = x * He[:, i] - i * He[:, i - 1]
+    return He
+
+
+def hermite_kernel_matrix_fast(X: np.ndarray, Y: np.ndarray, n: int) -> np.ndarray:
+    """
+    Versión optimizada del kernel de Hermite probabilista:
+        K(x,z) = ∏_j [ ∑_i 2^{-2i} He_i(x_j) He_i(z_j) * exp(-(x_j^2+z_j^2)/2) ]
+    """
+    X, Y = check_pairwise_arrays(X, Y)
+    m, d = X.shape
+    p, _ = Y.shape
+
+    scales = 2 ** (-2 * np.arange(n + 1))
+    X_exp = np.exp(-X ** 2 / 2)
+    Y_exp = np.exp(-Y ** 2 / 2)
+
+    K = np.ones((m, p), dtype=float)
+
+    # Procesamos una dimensión a la vez (evita gran tensor 3D)
+    for j in range(d):
+        He_X = compute_he(X[:, j], n)  # (m, n+1)
+        He_Y = compute_he(Y[:, j], n)  # (p, n+1)
+
+        # Vectorizamos: (He_X * scales) @ He_Y.T == Σ_i scales[i] He_i(x_j)He_i(z_j)
+        K_j = (He_X * scales) @ He_Y.T
+
+        # Factor gaussiano
+        exp_j = np.outer(X_exp[:, j], Y_exp[:, j])
+
+        K *= K_j * exp_j
+
+    return K
 
 def compute_gegenbauer(x: np.ndarray, n_max: int, alpha: float) -> np.ndarray:
     """
@@ -145,6 +190,53 @@ def gegenbauer_kernel(X: np.ndarray, Z: np.ndarray, n: int, alpha: float) -> np.
         K *= sum_i * W[:, :, j]
     return K
 
+def gegenbauer_kernel_fast(X: np.ndarray, Z: np.ndarray, n: int, alpha: float, eps: float = 1e-8) -> np.ndarray:
+    """
+    Vectorized Gegenbauer kernel:
+      K(x,z) = ∏_{j=1..d} [ ∑_{i=0..n} C_i^α(x_j) * C_i^α(z_j) * u_i^2 * w_α(x_j, z_j) ]
+    """
+
+    X, Z = check_pairwise_arrays(X, Z)
+    X = np.clip(X, -1.0, 1.0)
+    Z = np.clip(Z, -1.0, 1.0)
+
+    m, d = X.shape
+    p, _ = Z.shape
+
+    # Compute all Gegenbauer polynomials at once
+    degrees = np.arange(0, n + 1)
+    C_X = np.stack([eval_gegenbauer(deg, alpha, X) for deg in degrees], axis=-1)  # shape (m, d, n+1)
+    C_Z = np.stack([eval_gegenbauer(deg, alpha, Z) for deg in degrees], axis=-1)  # shape (p, d, n+1)
+
+    # Compute normalization factors u_i
+    if alpha > 0.5:
+        C1_vals = eval_gegenbauer(degrees, alpha, 1.0)
+        u_sq = 1.0 / ((np.sqrt(degrees + 1) * np.abs(C1_vals))**2)
+    else:
+        u_sq = np.ones_like(degrees, dtype=float)
+
+    # Compute weights (vectorized)
+    if alpha > 0.5:
+        term_x = np.clip(1 - X**2, 0, None)
+        term_z = np.clip(1 - Z**2, 0, None)
+        W = (term_x[:, None, :] * term_z[None, :, :])**(alpha - 0.5) + eps
+    else:
+        W = np.ones((m, p, d), dtype=float)
+
+    # Compute the kernel (vectorized over j and i)
+    # (m, p, d) ← sum_i (C_X[:,:,i] * u_sq[i]) @ (C_Z[:,:,i]).T
+    K = np.ones((m, p), dtype=float)
+    for j in range(d):
+        CXj = C_X[:, j, :] * u_sq[None, :]
+        CZj = C_Z[:, j, :]
+        S = CXj @ CZj.T
+        K *= S * W[:, :, j]
+
+    return K
+
+def gegenbauer_kernel(X, Z, n, alpha):
+    return gegenbauer_kernel_fast(X, Z, n, alpha)
+
 def compute_al_salam_carlitz_U(x: np.ndarray, q: float, a: float, n_max: int) -> np.ndarray:
     """
     Calcula los polinomios U_0..U_n_max de Al-Salam–Carlitz I evaluados en cada valor de x.
@@ -197,11 +289,12 @@ def q_pochhammer_inf(z, q, n_terms=500):
         qk *= q
     return result
 
+
 # ---------------------------------------------------------------------------------------------
 # FUNCIÓN DE PESO DE LOS AL-SALAM CARLIZT TIPO I 
 # ---------------------------------------------------------------------------------------------
 
-def weight_al_salam_carlitz(x, q, a, n_terms=500):
+def weight_al_salam_carlitz(x, q, a, n_terms=400):
     """
     Función de peso para polinomios Al-Salam–Carlitz I:
     
@@ -266,6 +359,10 @@ def kernel_AlSalam(X: np.ndarray, Z: np.ndarray, q: float, a: float, N: int) -> 
     # Inicializamos el kernel como 1 (producto acumulado por dimensión)
     K = np.ones((nX, nZ), dtype=float)
 
+    # Precompute weights once
+    weights_X = [np.maximum(weight_al_salam_carlitz(X[:, j], q, a, 400), 0.1) for j in range(d)]
+    weights_Z = [np.maximum(weight_al_salam_carlitz(Z[:, j], q, a, 400), 0.1) for j in range(d)]
+
     # Precomputamos los factores de escalado scale_i para i=0..N
     # scales = np.array([scaling_factor_al_salam_carlitz(a, q, i, N) for i in range(N + 1)])**2
     # scales[i] = 1 / (√(i+1) · |U_i(-1; q,a)|)**2
@@ -276,21 +373,13 @@ def kernel_AlSalam(X: np.ndarray, Z: np.ndarray, q: float, a: float, N: int) -> 
         Uz = compute_al_salam_carlitz_U(Z[:, dim:dim+1].ravel(), q, a, N)  # (nZ, N+1)
 
         # 2) Función de peso w(t) para esa dimensión
-        wx = weight_al_salam_carlitz(X[:, dim], q, a).reshape(-1, 1) # (nX, 1)
-        wz = weight_al_salam_carlitz(Z[:, dim], q, a).reshape(-1, 1) # (nZ, 1)
-        wx_scaled = np.maximum(wx, 0.1)
-        wz_scaled = np.maximum(wz, 0.1)
+        phi_x = Ux * weights_X[dim][:, None]
+        phi_z = Uz * weights_Z[dim][:, None]
 
-
-        # 3) Construimos las características φ = U * scale * w
-        #    Escalado de cada columna i con scales[i]
-        phi_x = Ux * wx_scaled        # (nX, N+1)
-        phi_z = Uz * wz_scaled         # (nZ, N+1)
-
-        # 4) Producto interno entre φ_x y φ_z para esta dimensión
+        # 3) Producto interno entre φ_x y φ_z para esta dimensión
         K_dim = phi_x @ phi_z.T   # (nX, nZ)
 
-        # 5) Acumulamos por producto en cada dimensión
+        # 4) Acumulamos por producto en cada dimensión
         K *= K_dim
 
     return K

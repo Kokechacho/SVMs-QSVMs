@@ -20,36 +20,33 @@
                 "australian"
             ],
             [
-                "heart.txt",
-                "heart"
-            ],
-            [
-                "sonar.txt",
-                "sonar"
-            ],
-            [
                 "german.txt",
                 "german"
             ],
             [
-                "splice.txt",
-                "splice"
+                "heart.txt",
+                "heart"
+            ],
+            [
+                "fourclass.txt",
+                "fourclass"
             ]
         ],
         "libsvm_dir": "data/libsvm",
         "expected_results_file": "data/expected_results.csv"
     },
     "svm": {
-        "C": 10,
+        "C": 1,
         "kernel_types": [
             "linear",
             "poly",
             "rbf",
             "custom_hermite",
-            "custom_gegen"
+            "custom_gegen",
+            "custom_alsalam"
         ],
         "poly": {
-            "degree": 3,
+            "degree": 5,
             "gamma": [
                 "scale",
                 "auto"
@@ -63,11 +60,16 @@
             ]
         },
         "custom_hermite": {
-            "degree": 4
+            "degree": 5
         },
         "custom_gegen": {
-            "degree": 3,
-            "alpha": 0.55
+            "degree": 5,
+            "alpha": 0.2
+        },
+        "custom_alsalam": {
+            "degree": 5,
+            "a": -1,
+            "q": 0.4
         }
     },
     "cross_validation": {
@@ -80,5 +82,8 @@
         "results_dir": "hparam_results\\run_4\\results",
         "plots_dir": "hparam_results\\run_4\\plots",
         "log_level": "INFO"
+    },
+    "pca": {
+        "n_steps": 0
     }
 }
