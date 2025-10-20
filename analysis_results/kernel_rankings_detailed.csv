@@ -1,7 +1,0 @@
-kernel,rank_mean,rank_std,rank_min,rank_max,accuracy_global_mean,accuracy_global_std,n_datasets
-GEGEN,2.571,1.272,1,4,87.03,10.035,7
-POLY,2.714,1.89,1,6,86.238,9.11,7
-RBF,2.857,1.215,1,4,86.865,10.373,7
-LINEAR,3.857,2.035,2,6,82.808,8.067,7
-AL-SALAM,4.143,1.952,1,6,83.902,11.769,7
-HERMITE,4.857,0.9,3,6,83.365,10.06,7

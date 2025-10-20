@@ -1,0 +1,284 @@
+DATASET CHARACTERIZATION SUMMARY
+====================================================================================================
+Generated: 2025-10-17 22:24:45
+Total datasets characterized: 20
+
+DATASET: ecoli
+--------------------------------------------------
+  Samples: 336
+  Features: 7
+  Classes: 8
+  Class Distribution: cp: 143 samples (42.6%); im: 77 samples (22.9%); imL: 2 samples (0.6%); imS: 2 samples (0.6%); imU: 35 samples (10.4%); om: 20 samples (6.0%); omL: 5 samples (1.5%); pp: 52 samples (15.5%)
+  Majority Class: 42.6%
+  Minority Class: 0.6%
+  Imbalance Ratio: 0.014
+  Overall Statistics - Mean: 0.500, Std: 0.157
+  Data Range: [0.000, 1.000]
+  Max Feature Correlation: 0.809
+  Constant Features: 0
+
+DATASET: glass
+--------------------------------------------------
+  Samples: 214
+  Features: 9
+  Classes: 6
+  Class Distribution: 1: 70 samples (32.7%); 2: 76 samples (35.5%); 3: 17 samples (7.9%); 5: 13 samples (6.1%); 6: 9 samples (4.2%); 7: 29 samples (13.6%)
+  Majority Class: 35.5%
+  Minority Class: 4.2%
+  Imbalance Ratio: 0.118
+  Overall Statistics - Mean: 11.266, Std: 22.146
+  Data Range: [0.000, 75.410]
+  Max Feature Correlation: 0.810
+  Constant Features: 0
+
+DATASET: SPECTF
+--------------------------------------------------
+  Samples: 267
+  Features: 44
+  Classes: 2
+  Class Distribution: 0: 55 samples (20.6%); 1: 212 samples (79.4%)
+  Majority Class: 79.4%
+  Minority Class: 20.6%
+  Imbalance Ratio: 0.259
+  Overall Statistics - Mean: 64.584, Std: 11.046
+  Data Range: [3.000, 89.000]
+  Max Feature Correlation: 0.890
+  Constant Features: 0
+
+DATASET: student
+--------------------------------------------------
+  Samples: 145
+  Features: 31
+  Classes: 8
+  Class Distribution: 0: 8 samples (5.5%); 1: 35 samples (24.1%); 2: 24 samples (16.6%); 3: 21 samples (14.5%); 4: 10 samples (6.9%); 5: 17 samples (11.7%); 6: 13 samples (9.0%); 7: 17 samples (11.7%)
+  Majority Class: 24.1%
+  Minority Class: 5.5%
+  Imbalance Ratio: 0.229
+  Overall Statistics - Mean: 2.056, Std: 1.214
+  Data Range: [1.000, 9.000]
+  Max Feature Correlation: 0.658
+  Constant Features: 0
+
+DATASET: parkinson
+--------------------------------------------------
+  Samples: 195
+  Features: 22
+  Classes: 2
+  Class Distribution: 0: 48 samples (24.6%); 1: 147 samples (75.4%)
+  Majority Class: 75.4%
+  Minority Class: 24.6%
+  Imbalance Ratio: 0.327
+  Overall Statistics - Mean: 22.187, Std: 59.465
+  Data Range: [-7.965, 592.030]
+  Max Feature Correlation: 1.000
+  Constant Features: 0
+
+DATASET: vertebral
+--------------------------------------------------
+  Samples: 310
+  Features: 6
+  Classes: 3
+  Class Distribution: Hernia: 60 samples (19.4%); Normal: 100 samples (32.3%); Spondylolisthesis: 150 samples (48.4%)
+  Majority Class: 48.4%
+  Minority Class: 19.4%
+  Imbalance Ratio: 0.400
+  Overall Statistics - Mean: 52.857, Std: 38.394
+  Data Range: [-11.058, 418.543]
+  Max Feature Correlation: 0.815
+  Constant Features: 0
+
+DATASET: fertility
+--------------------------------------------------
+  Samples: 100
+  Features: 9
+  Classes: 2
+  Class Distribution: N: 88 samples (88.0%); O: 12 samples (12.0%)
+  Majority Class: 88.0%
+  Minority Class: 12.0%
+  Imbalance Ratio: 0.136
+  Overall Statistics - Mean: 0.388, Std: 0.635
+  Data Range: [-1.000, 1.000]
+  Max Feature Correlation: 0.442
+  Constant Features: 0
+
+DATASET: cervical
+--------------------------------------------------
+  Samples: 72
+  Features: 19
+  Classes: 2
+  Class Distribution: 0: 51 samples (70.8%); 1: 21 samples (29.2%)
+  Majority Class: 70.8%
+  Minority Class: 29.2%
+  Imbalance Ratio: 0.412
+  Overall Statistics - Mean: 9.117, Std: 4.208
+  Data Range: [1.000, 15.000]
+  Max Feature Correlation: 0.854
+  Constant Features: 0
+
+DATASET: mines
+--------------------------------------------------
+  Samples: 338
+  Features: 3
+  Classes: 5
+  Class Distribution: 1: 71 samples (21.0%); 2: 70 samples (20.7%); 3: 66 samples (19.5%); 4: 66 samples (19.5%); 5: 65 samples (19.2%)
+  Majority Class: 21.0%
+  Minority Class: 19.2%
+  Imbalance Ratio: 0.915
+  Overall Statistics - Mean: 0.481, Std: 0.291
+  Data Range: [0.000, 1.000]
+  Max Feature Correlation: 0.378
+  Constant Features: 0
+
+DATASET: blood
+--------------------------------------------------
+  Samples: 748
+  Features: 4
+  Classes: 2
+  Class Distribution: 0: 570 samples (76.2%); 1: 178 samples (23.8%)
+  Majority Class: 76.2%
+  Minority Class: 23.8%
+  Imbalance Ratio: 0.312
+  Overall Statistics - Mean: 356.995, Std: 938.243
+  Data Range: [0.000, 12500.000]
+  Max Feature Correlation: 1.000
+  Constant Features: 0
+
+DATASET: statlog
+--------------------------------------------------
+  Samples: 845
+  Features: 18
+  Classes: 4
+  Class Distribution: bus: 217 samples (25.7%); opel: 212 samples (25.1%); saab: 217 samples (25.7%); van: 199 samples (23.6%)
+  Majority Class: 25.7%
+  Minority Class: 23.6%
+  Imbalance Ratio: 0.917
+  Overall Statistics - Mean: 117.639, Std: 112.768
+  Data Range: [0.000, 1018.000]
+  Max Feature Correlation: 0.996
+  Constant Features: 0
+
+DATASET: hepatitis
+--------------------------------------------------
+  Samples: 80
+  Features: 19
+  Classes: 2
+  Class Distribution: 1: 13 samples (16.2%); 2: 67 samples (83.8%)
+  Majority Class: 83.8%
+  Minority Class: 16.2%
+  Imbalance Ratio: 0.194
+  Overall Statistics - Mean: 16.547, Std: 37.212
+  Data Range: [0.000, 420.000]
+  Max Feature Correlation: 0.649
+  Constant Features: 0
+
+DATASET: wine
+--------------------------------------------------
+  Samples: 178
+  Features: 13
+  Classes: 3
+  Class Distribution: 1: 59 samples (33.1%); 2: 71 samples (39.9%); 3: 48 samples (27.0%)
+  Majority Class: 39.9%
+  Minority Class: 27.0%
+  Imbalance Ratio: 0.676
+  Overall Statistics - Mean: 69.134, Std: 215.746
+  Data Range: [0.130, 1680.000]
+  Max Feature Correlation: 0.865
+  Constant Features: 0
+
+DATASET: haberman
+--------------------------------------------------
+  Samples: 306
+  Features: 3
+  Classes: 2
+  Class Distribution: 1: 225 samples (73.5%); 2: 81 samples (26.5%)
+  Majority Class: 73.5%
+  Minority Class: 26.5%
+  Imbalance Ratio: 0.360
+  Overall Statistics - Mean: 39.779, Std: 26.769
+  Data Range: [0.000, 83.000]
+  Max Feature Correlation: 0.090
+  Constant Features: 0
+
+DATASET: ionosphere
+--------------------------------------------------
+  Samples: 351
+  Features: 34
+  Classes: 2
+  Class Distribution: b: 126 samples (35.9%); g: 225 samples (64.1%)
+  Majority Class: 64.1%
+  Minority Class: 35.9%
+  Imbalance Ratio: 0.560
+  Overall Statistics - Mean: 0.248, Std: 0.576
+  Data Range: [-1.000, 1.000]
+  Max Feature Correlation: nan
+  Constant Features: 1
+
+DATASET: breast
+--------------------------------------------------
+  Samples: 683
+  Features: 9
+  Classes: 2
+  Class Distribution: 2: 444 samples (65.0%); 4: 239 samples (35.0%)
+  Majority Class: 65.0%
+  Minority Class: 35.0%
+  Imbalance Ratio: 0.538
+  Overall Statistics - Mean: 3.148, Std: 2.895
+  Data Range: [1.000, 10.000]
+  Max Feature Correlation: 0.907
+  Constant Features: 0
+
+DATASET: australian
+--------------------------------------------------
+  Samples: 690
+  Features: 15
+  Classes: 2
+  Class Distribution: -1.0: 383 samples (55.5%); 1.0: 307 samples (44.5%)
+  Majority Class: 55.5%
+  Minority Class: 44.5%
+  Imbalance Ratio: 0.802
+  Overall Statistics - Mean: -0.328, Std: 0.708
+  Data Range: [-1.000, 1.000]
+  Max Feature Correlation: nan
+  Constant Features: 1
+
+DATASET: german
+--------------------------------------------------
+  Samples: 1000
+  Features: 25
+  Classes: 2
+  Class Distribution: -1.0: 700 samples (70.0%); 1.0: 300 samples (30.0%)
+  Majority Class: 70.0%
+  Minority Class: 30.0%
+  Imbalance Ratio: 0.429
+  Overall Statistics - Mean: -0.242, Std: 0.826
+  Data Range: [-1.000, 1.000]
+  Max Feature Correlation: nan
+  Constant Features: 1
+
+DATASET: heart
+--------------------------------------------------
+  Samples: 270
+  Features: 14
+  Classes: 2
+  Class Distribution: -1.0: 150 samples (55.6%); 1.0: 120 samples (44.4%)
+  Majority Class: 55.6%
+  Minority Class: 44.4%
+  Imbalance Ratio: 0.800
+  Overall Statistics - Mean: -0.176, Std: 0.742
+  Data Range: [-1.000, 1.000]
+  Max Feature Correlation: nan
+  Constant Features: 1
+
+DATASET: fourclass
+--------------------------------------------------
+  Samples: 862
+  Features: 3
+  Classes: 2
+  Class Distribution: -1.0: 555 samples (64.4%); 1.0: 307 samples (35.6%)
+  Majority Class: 64.4%
+  Minority Class: 35.6%
+  Imbalance Ratio: 0.553
+  Overall Statistics - Mean: 0.006, Std: 0.449
+  Data Range: [-1.000, 1.000]
+  Max Feature Correlation: nan
+  Constant Features: 1

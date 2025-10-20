@@ -1,5 +1,0 @@
-dataset,kernel,best_accuracy,best_params,n_trials,best_trial_number
-haberman,ALSALAM,75.78494623655914,"{'C': 30, 'degree': 2, 'a': -1, 'q': 0.5002672457314982}",100,96
-ionosphere,ALSALAM,95.72222222222224,"{'C': 98, 'degree': 3, 'a': -1, 'q': 0.19}",100,82
-breast,ALSALAM,97.0694799658994,"{'C': 16, 'degree': 7, 'a': -1, 'q': 0.64}",100,99
-australian,ALSALAM,84.92753623188406,"{'C': 12, 'degree': 2, 'a': -1, 'q': 0.56}",100,72

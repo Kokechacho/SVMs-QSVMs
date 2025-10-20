@@ -1,7 +1,0 @@
-{
-  "n_datasets": 7,
-  "n_significant_friedman": 7,
-  "n_significant_kruskal": 7,
-  "mean_friedman_p": 1.7689876514954083e-22,
-  "mean_kruskal_p": 3.780739276563352e-22
-}

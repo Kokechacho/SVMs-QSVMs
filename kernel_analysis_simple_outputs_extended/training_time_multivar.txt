@@ -1,0 +1,29 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:     training_time_mean   R-squared:                       0.354
+Model:                            OLS   Adj. R-squared:                  0.337
+Method:                 Least Squares   F-statistic:                     6.840
+Date:                Sun, 19 Oct 2025   Prob (F-statistic):           0.000277
+Time:                        13:12:51   Log-Likelihood:                 243.50
+No. Observations:                 120   AIC:                            -479.0
+Df Residuals:                     116   BIC:                            -467.9
+Df Model:                           3                                         
+Covariance Type:                  HC3                                         
+=========================================================================================
+                            coef    std err          z      P>|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------------
+const                    -0.0261      0.009     -3.058      0.002      -0.043      -0.009
+n_samples              8.324e-05    2.5e-05      3.328      0.001    3.42e-05       0.000
+class_imbalance_ratio    -0.0016      0.013     -0.129      0.897      -0.027       0.023
+n_features                0.0007      0.000      2.296      0.022       0.000       0.001
+==============================================================================
+Omnibus:                      140.978   Durbin-Watson:                   1.150
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             3690.325
+Skew:                           4.127   Prob(JB):                         0.00
+Kurtosis:                      28.883   Cond. No.                     2.19e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+[2] The condition number is large, 2.19e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.

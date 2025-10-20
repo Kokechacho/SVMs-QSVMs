@@ -1,0 +1,128 @@
+========================================================================================================================
+REPORT - BAYESIAN OPTIMIZATION METHODOLOGY
+========================================================================================================================
+METHODOLOGY:
+  - 35 experimental trials with different seeds
+  - Each trial: different 10-fold partition
+  - Optimization: Bayesian Optimization (Optuna) with 100 evaluations
+  - Each evaluation: 10-fold cross-validation
+  - Same folds for all kernels in a trial
+  - Average of the 35 best kernels
+Total combinations evaluated: 78
+Timestamp: 20251017_160705
+
+DATASET: ecoli
+----------------------------------------------------------------------------------------------------
+poly            | Accuracy: 0.8786 ± 0.0021 | F1-Score: 0.8701 | Support Vectors: 0.4322 | Training Time: 0.0026s
+rbf             | Accuracy: 0.8766 ± 0.0029 | F1-Score: 0.8675 | Support Vectors: 0.4703 | Training Time: 0.0026s
+linear          | Accuracy: 0.8741 ± 0.0042 | F1-Score: 0.8663 | Support Vectors: 0.4248 | Training Time: 0.0019s
+custom_alsalam  | Accuracy: 0.8687 ± 0.0068 | F1-Score: 0.8588 | Support Vectors: 0.4414 | Training Time: 0.0035s
+custom_hermite  | Accuracy: 0.8672 ± 0.0022 | F1-Score: 0.8600 | Support Vectors: 0.4789 | Training Time: 0.0062s
+custom_gegen    | Accuracy: 0.8603 ± 0.0296 | F1-Score: 0.8512 | Support Vectors: 0.4384 | Training Time: 0.0062s
+DATASET: mines
+----------------------------------------------------------------------------------------------------
+custom_alsalam  | Accuracy: 0.6024 ± 0.0109 | F1-Score: 0.5909 | Support Vectors: 0.7587 | Training Time: 0.0067s
+rbf             | Accuracy: 0.5874 ± 0.0245 | F1-Score: 0.5769 | Support Vectors: 0.8448 | Training Time: 0.0047s
+poly            | Accuracy: 0.5799 ± 0.0209 | F1-Score: 0.5558 | Support Vectors: 0.7685 | Training Time: 0.0092s
+custom_gegen    | Accuracy: 0.5612 ± 0.0163 | F1-Score: 0.5331 | Support Vectors: 0.8219 | Training Time: 0.0051s
+custom_hermite  | Accuracy: 0.5301 ± 0.0076 | F1-Score: 0.4970 | Support Vectors: 0.8319 | Training Time: 0.0036s
+linear          | Accuracy: 0.5258 ± 0.0075 | F1-Score: 0.4791 | Support Vectors: 0.7954 | Training Time: 0.0028s
+DATASET: blood
+----------------------------------------------------------------------------------------------------
+rbf             | Accuracy: 0.7894 ± 0.0050 | F1-Score: 0.7589 | Support Vectors: 0.4868 | Training Time: 0.0121s
+custom_alsalam  | Accuracy: 0.7888 ± 0.0032 | F1-Score: 0.7534 | Support Vectors: 0.4867 | Training Time: 0.0231s
+custom_gegen    | Accuracy: 0.7768 ± 0.0085 | F1-Score: 0.7169 | Support Vectors: 0.4818 | Training Time: 0.0433s
+poly            | Accuracy: 0.7752 ± 0.0033 | F1-Score: 0.7099 | Support Vectors: 0.4888 | Training Time: 0.0262s
+custom_hermite  | Accuracy: 0.7696 ± 0.0007 | F1-Score: 0.6880 | Support Vectors: 0.4821 | Training Time: 0.0214s
+linear          | Accuracy: 0.7618 ± 0.0014 | F1-Score: 0.6610 | Support Vectors: 0.4841 | Training Time: 0.0093s
+DATASET: statlog
+----------------------------------------------------------------------------------------------------
+poly            | Accuracy: 0.8489 ± 0.0077 | F1-Score: 0.8466 | Support Vectors: 0.4773 | Training Time: 0.0260s
+custom_alsalam  | Accuracy: 0.8333 ± 0.0136 | F1-Score: 0.8318 | Support Vectors: 0.5027 | Training Time: 0.0629s
+custom_gegen    | Accuracy: 0.8268 ± 0.0226 | F1-Score: 0.8249 | Support Vectors: 0.5667 | Training Time: 0.1846s
+rbf             | Accuracy: 0.8239 ± 0.0148 | F1-Score: 0.8208 | Support Vectors: 0.5873 | Training Time: 0.0150s
+linear          | Accuracy: 0.8085 ± 0.0031 | F1-Score: 0.8048 | Support Vectors: 0.4914 | Training Time: 0.0172s
+custom_hermite  | Accuracy: 0.7400 ± 0.0039 | F1-Score: 0.7270 | Support Vectors: 0.6880 | Training Time: 0.1066s
+DATASET: hepatitis
+----------------------------------------------------------------------------------------------------
+poly            | Accuracy: 0.8479 ± 0.0152 | F1-Score: 0.8412 | Support Vectors: 0.3449 | Training Time: 0.0007s
+custom_gegen    | Accuracy: 0.8458 ± 0.0093 | F1-Score: 0.7968 | Support Vectors: 0.6000 | Training Time: 0.0018s
+rbf             | Accuracy: 0.8417 ± 0.0093 | F1-Score: 0.7731 | Support Vectors: 0.9699 | Training Time: 0.0008s
+custom_hermite  | Accuracy: 0.8375 ± 0.0000 | F1-Score: 0.7645 | Support Vectors: 0.3343 | Training Time: 0.0017s
+custom_alsalam  | Accuracy: 0.8375 ± 0.0000 | F1-Score: 0.7645 | Support Vectors: 0.3250 | Training Time: 0.0019s
+linear          | Accuracy: 0.8229 ± 0.0168 | F1-Score: 0.8195 | Support Vectors: 0.2597 | Training Time: 0.0008s
+DATASET: wine
+----------------------------------------------------------------------------------------------------
+custom_alsalam  | Accuracy: 0.9879 ± 0.0040 | F1-Score: 0.9879 | Support Vectors: 0.4338 | Training Time: 0.0022s
+rbf             | Accuracy: 0.9860 ± 0.0043 | F1-Score: 0.9859 | Support Vectors: 0.4582 | Training Time: 0.0012s
+custom_gegen    | Accuracy: 0.9851 ± 0.0084 | F1-Score: 0.9850 | Support Vectors: 0.4262 | Training Time: 0.0027s
+custom_hermite  | Accuracy: 0.9841 ± 0.0068 | F1-Score: 0.9840 | Support Vectors: 0.3045 | Training Time: 0.0021s
+poly            | Accuracy: 0.9833 ± 0.0079 | F1-Score: 0.9832 | Support Vectors: 0.2723 | Training Time: 0.0008s
+linear          | Accuracy: 0.9703 ± 0.0095 | F1-Score: 0.9701 | Support Vectors: 0.1758 | Training Time: 0.0008s
+DATASET: haberman
+----------------------------------------------------------------------------------------------------
+custom_gegen    | Accuracy: 0.7434 ± 0.0059 | F1-Score: 0.6912 | Support Vectors: 0.5319 | Training Time: 0.0071s
+custom_hermite  | Accuracy: 0.7423 ± 0.0023 | F1-Score: 0.6727 | Support Vectors: 0.5358 | Training Time: 0.0023s
+custom_alsalam  | Accuracy: 0.7417 ± 0.0037 | F1-Score: 0.6728 | Support Vectors: 0.5380 | Training Time: 0.0022s
+poly            | Accuracy: 0.7412 ± 0.0100 | F1-Score: 0.6801 | Support Vectors: 0.5358 | Training Time: 0.0045s
+rbf             | Accuracy: 0.7364 ± 0.0082 | F1-Score: 0.6753 | Support Vectors: 0.5450 | Training Time: 0.0020s
+linear          | Accuracy: 0.7254 ± 0.0027 | F1-Score: 0.6209 | Support Vectors: 0.5425 | Training Time: 0.0021s
+DATASET: ionosphere
+----------------------------------------------------------------------------------------------------
+rbf             | Accuracy: 0.9449 ± 0.0042 | F1-Score: 0.9446 | Support Vectors: 0.4818 | Training Time: 0.0031s
+custom_alsalam  | Accuracy: 0.9369 ± 0.0076 | F1-Score: 0.9370 | Support Vectors: 0.6094 | Training Time: 0.0145s
+custom_gegen    | Accuracy: 0.9235 ± 0.0141 | F1-Score: 0.9219 | Support Vectors: 0.3271 | Training Time: 0.0306s
+poly            | Accuracy: 0.9220 ± 0.0057 | F1-Score: 0.9190 | Support Vectors: 0.2515 | Training Time: 0.0046s
+linear          | Accuracy: 0.8860 ± 0.0091 | F1-Score: 0.8811 | Support Vectors: 0.2391 | Training Time: 0.0038s
+custom_hermite  | Accuracy: 0.6856 ± 0.0022 | F1-Score: 0.5970 | Support Vectors: 0.6692 | Training Time: 0.0181s
+DATASET: breast
+----------------------------------------------------------------------------------------------------
+custom_hermite  | Accuracy: 0.9732 ± 0.0011 | F1-Score: 0.9732 | Support Vectors: 0.1956 | Training Time: 0.0333s
+poly            | Accuracy: 0.9710 ± 0.0013 | F1-Score: 0.9711 | Support Vectors: 0.0815 | Training Time: 0.0043s
+custom_gegen    | Accuracy: 0.9678 ± 0.0063 | F1-Score: 0.9678 | Support Vectors: 0.1450 | Training Time: 0.0476s
+linear          | Accuracy: 0.9676 ± 0.0016 | F1-Score: 0.9676 | Support Vectors: 0.0744 | Training Time: 0.0034s
+rbf             | Accuracy: 0.9654 ± 0.0022 | F1-Score: 0.9656 | Support Vectors: 0.2855 | Training Time: 0.0061s
+custom_alsalam  | Accuracy: 0.9634 ± 0.0027 | F1-Score: 0.9635 | Support Vectors: 0.2496 | Training Time: 0.0161s
+DATASET: australian
+----------------------------------------------------------------------------------------------------
+poly            | Accuracy: 0.8606 ± 0.0019 | F1-Score: 0.8607 | Support Vectors: 0.3185 | Training Time: 0.0077s
+linear          | Accuracy: 0.8534 ± 0.0021 | F1-Score: 0.8536 | Support Vectors: 0.3364 | Training Time: 0.0163s
+rbf             | Accuracy: 0.8478 ± 0.0084 | F1-Score: 0.8477 | Support Vectors: 0.4435 | Training Time: 0.0080s
+custom_gegen    | Accuracy: 0.8440 ± 0.0275 | F1-Score: 0.8439 | Support Vectors: 0.3444 | Training Time: 0.0993s
+custom_alsalam  | Accuracy: 0.8017 ± 0.0174 | F1-Score: 0.7998 | Support Vectors: 0.5079 | Training Time: 0.0334s
+custom_hermite  | Accuracy: 0.8014 ± 0.0146 | F1-Score: 0.7938 | Support Vectors: 0.7457 | Training Time: 0.0613s
+DATASET: german
+----------------------------------------------------------------------------------------------------
+linear          | Accuracy: 0.7687 ± 0.0043 | F1-Score: 0.7581 | Support Vectors: 0.5505 | Training Time: 0.0303s
+poly            | Accuracy: 0.7645 ± 0.0049 | F1-Score: 0.7521 | Support Vectors: 0.5427 | Training Time: 0.0119s
+custom_gegen    | Accuracy: 0.7243 ± 0.0200 | F1-Score: 0.7133 | Support Vectors: 0.6668 | Training Time: 0.3195s
+rbf             | Accuracy: 0.7177 ± 0.0082 | F1-Score: 0.6768 | Support Vectors: 0.8668 | Training Time: 0.0209s
+custom_alsalam  | Accuracy: 0.7128 ± 0.0047 | F1-Score: 0.6560 | Support Vectors: 0.9597 | Training Time: 0.1010s
+custom_hermite  | Accuracy: 0.7000 ± 0.0000 | F1-Score: 0.5765 | Support Vectors: 0.6001 | Training Time: 0.2081s
+DATASET: heart
+----------------------------------------------------------------------------------------------------
+linear          | Accuracy: 0.8370 ± 0.0060 | F1-Score: 0.8355 | Support Vectors: 0.3651 | Training Time: 0.0039s
+poly            | Accuracy: 0.8346 ± 0.0079 | F1-Score: 0.8335 | Support Vectors: 0.3967 | Training Time: 0.0014s
+custom_gegen    | Accuracy: 0.8241 ± 0.0212 | F1-Score: 0.8219 | Support Vectors: 0.5275 | Training Time: 0.0063s
+rbf             | Accuracy: 0.7907 ± 0.0115 | F1-Score: 0.7890 | Support Vectors: 0.5915 | Training Time: 0.0019s
+custom_alsalam  | Accuracy: 0.7877 ± 0.0138 | F1-Score: 0.7844 | Support Vectors: 0.7521 | Training Time: 0.0033s
+custom_hermite  | Accuracy: 0.7086 ± 0.0035 | F1-Score: 0.6715 | Support Vectors: 0.8187 | Training Time: 0.0051s
+DATASET: fourclass
+----------------------------------------------------------------------------------------------------
+rbf             | Accuracy: 1.0000 ± 0.0000 | F1-Score: 1.0000 | Support Vectors: 0.0860 | Training Time: 0.0097s
+custom_alsalam  | Accuracy: 0.9704 ± 0.0482 | F1-Score: 0.9694 | Support Vectors: 0.2209 | Training Time: 0.0131s
+poly            | Accuracy: 0.9360 ± 0.0495 | F1-Score: 0.9348 | Support Vectors: 0.3344 | Training Time: 0.0244s
+custom_gegen    | Accuracy: 0.9263 ± 0.0623 | F1-Score: 0.9235 | Support Vectors: 0.3063 | Training Time: 0.0261s
+custom_hermite  | Accuracy: 0.8094 ± 0.0014 | F1-Score: 0.7953 | Support Vectors: 0.4711 | Training Time: 0.0248s
+linear          | Accuracy: 0.7682 ± 0.0020 | F1-Score: 0.7580 | Support Vectors: 0.5280 | Training Time: 0.0082s
+
+========================================================================================================================
+BEST OVERALL RESULT
+========================================================================================================================
+Combination: fourclass - rbf
+Accuracy: 1.0000 ± 0.0000
+F1-Score: 1.0000
+Support Vectors: 0.0860
+Training Time: 0.0097s
+Optimization Time: 1.2s
+Number of trials: 6

@@ -1,0 +1,7 @@
+kernel,metric,lodo_acc,n_datasets
+custom_alsalam,accuracy,0.6,20
+custom_gegen,accuracy,0.9,20
+custom_hermite,accuracy,0.7,20
+linear,accuracy,1.0,20
+poly,accuracy,0.85,20
+rbf,accuracy,0.6,20

@@ -1,6 +1,20 @@
 {
   "data": {
-    "uci": [[43, "haberman"],
+    "uci": [
+    [39, "ecoli"],
+    [42, "glass"],
+    [96, "SPECTF"],
+    [856, "student"],
+    [174, "parkinson"],
+    [212, "vertebral"],
+    [244, "fertility"],
+    [537, "cervical"],
+    [763, "mines"],
+    [176, "blood"],
+    [149, "statlog"],
+    [46, "hepatitis"],
+    [109, "wine"],
+    [43, "haberman"],
     [52, "ionosphere"],
     [15, "breast"]],
     "libsvm": [

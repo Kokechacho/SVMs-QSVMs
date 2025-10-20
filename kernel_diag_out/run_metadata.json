@@ -1,0 +1,18 @@
+{
+  "R": 5,
+  "outer_folds": 2,
+  "n_trials_inner": 5,
+  "n_permutations": 100,
+  "n_eigs_save": 100,
+  "lambda_dof": 0.001,
+  "trust_k": 5,
+  "random_seed": 2025,
+  "kernels": [
+    "linear",
+    "poly",
+    "rbf",
+    "custom_hermite",
+    "custom_gegen",
+    "custom_alsalam"
+  ]
+}
