@@ -102,6 +102,8 @@ class BayesianOptimizationMethodology:
             f1_scores = []
             support_props = []
             training_times = []
+
+            N = len(X)  # total number of samples in the whole dataset (denominator)
             
             for fold_idx, (train_idx, test_idx) in enumerate(cv.split(X, y)):
                 X_train, X_test = X[train_idx], X[test_idx]
@@ -129,8 +131,9 @@ class BayesianOptimizationMethodology:
                 
                 # Calculate support vectors proportion
                 n_support_vectors = np.sum(model.n_support_)
-                support_props.append(n_support_vectors / len(X_train))
-            
+                support_prop = 100 * n_support_vectors / N
+                support_props.append(support_prop)
+
             return {
                 'accuracy': np.mean(accuracy_scores),
                 'accuracy_std': np.std(accuracy_scores),

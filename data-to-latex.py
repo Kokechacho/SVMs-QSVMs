@@ -76,7 +76,7 @@ class ResultsVisualizer:
         pivot_data = self.prepare_data_for_table(metric)
         
         # Define kernel order for columns
-        kernel_order = ['GEGEN', 'RBF', 'POLY', 'AL-SALAM', 'LINEAR', 'HERMITE']
+        kernel_order = ['AL-SALAM', 'LINEAR', 'POLY', 'RBF', 'HERMITE', 'GEGEN']
         
         # Start building LaTeX table
         latex_code = []
