@@ -190,7 +190,7 @@ def gegenbauer_kernel(X: np.ndarray, Z: np.ndarray, n: int, alpha: float) -> np.
         K *= sum_i * W[:, :, j]
     return K
 
-def gegenbauer_kernel_fast(X: np.ndarray, Z: np.ndarray, n: int, alpha: float, eps: float = 1e-8) -> np.ndarray:
+def gegenbauer_kernel_fast(X: np.ndarray, Z: np.ndarray, n: int, alpha: float, eps: float = 0.1) -> np.ndarray:
     """
     Vectorized Gegenbauer kernel:
       K(x,z) = ∏_{j=1..d} [ ∑_{i=0..n} C_i^α(x_j) * C_i^α(z_j) * u_i^2 * w_α(x_j, z_j) ]
@@ -277,7 +277,7 @@ def compute_al_salam_carlitz_U(x: np.ndarray, q: float, a: float, n_max: int) ->
 # La necesitamos para calcular la función de peso posterior
 # ---------------------------------------------------------------------------------------------
 
-def q_pochhammer_inf(z, q, n_terms=2):
+def q_pochhammer_inf(z, q, n_terms=10):
     """
     Aproxima (z; q)_∞ ≈ ∏_{k=0}^{n_terms-1} (1 - z * q^k).
     """
@@ -294,7 +294,7 @@ def q_pochhammer_inf(z, q, n_terms=2):
 # FUNCIÓN DE PESO DE LOS AL-SALAM CARLIZT TIPO I 
 # ---------------------------------------------------------------------------------------------
 
-def weight_al_salam_carlitz(x, q, a, n_terms=2):
+def weight_al_salam_carlitz(x, q, a, n_terms=10):
     """
     Función de peso para polinomios Al-Salam–Carlitz I:
     

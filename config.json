@@ -1,7 +1,6 @@
 {
   "data": {
-    "uci": [
-    [39, "ecoli"],
+    "uci": [[39, "ecoli"],
     [42, "glass"],
     [96, "SPECTF"],
     [856, "student"],
@@ -23,8 +22,8 @@
     ["heart.txt", "heart"],
     ["fourclass.txt", "fourclass"]
   ],
-    "libsvm_dir": "data/libsvm",
-    "expected_results_file": "data/expected_results.csv"
+    "libsvm_dir": "./Data/libsvm",
+    "expected_results_file": "./Data/expected_results.csv"
   },
   "svm": {
     "C": 15,

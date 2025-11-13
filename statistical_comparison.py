@@ -403,22 +403,6 @@ class BayesianOptimizationMethodology:
         self.save_results(all_results, detailed_results, optimization_history)
         return all_results, detailed_results, optimization_history
     
-    def calculate_confidence_interval(self, data: List[float], confidence: float = 0.95) -> Tuple[float, float]:
-        """Calculate confidence interval"""
-        if len(data) < 2:
-            return (np.mean(data), np.mean(data))
-        
-        n = len(data)
-        mean = np.mean(data)
-        sem = stats.sem(data)
-        
-        if n >= 30:
-            ci = stats.norm.interval(confidence, loc=mean, scale=sem)
-        else:
-            ci = stats.t.interval(confidence, n-1, loc=mean, scale=sem)
-        
-        return ci
-    
     def save_results(self, summary_results: List[Dict], detailed_results: List[Dict], 
                     optimization_history: List[Dict]):
         """Save all results"""
