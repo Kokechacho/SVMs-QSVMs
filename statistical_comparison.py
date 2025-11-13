@@ -82,6 +82,22 @@ class BayesianOptimizationMethodology:
         except Exception as e:
             logger.error(f"Error building kernel {kernel_name}: {e}")
             return None
+        
+    def calculate_confidence_interval(self, data: List[float], confidence: float = 0.95) -> Tuple[float, float]:
+        """Calculate confidence interval"""
+        if len(data) < 2:
+            return (np.mean(data), np.mean(data))
+        
+        n = len(data)
+        mean = np.mean(data)
+        sem = stats.sem(data)
+        
+        if n >= 30:
+            ci = stats.norm.interval(confidence, loc=mean, scale=sem)
+        else:
+            ci = stats.t.interval(confidence, n-1, loc=mean, scale=sem)
+        
+        return ci
     
     # Given a kernel perform stratified K-fold CV (same evaluation for the trial) training an SVM and return CV-aggregated metrics
     def evaluate_with_cross_validation(self, X: np.ndarray, y: np.ndarray, 
